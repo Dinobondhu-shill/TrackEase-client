@@ -20,7 +20,7 @@ return (
         minimize asset loss, and optimize resource allocation through our innovative platform.</p>
     </div>
     <div className="w-1/2 flex justify-center">
-      <Lottie animationData={mission} loop={true} className='w-[80%] ' />;
+      <Lottie animationData={mission} loop={true} className='w-[80%]' />;
     </div>
   </div>
   <h3 className='font-semibold my-8 text-3xl'>What We Offer: </h3>

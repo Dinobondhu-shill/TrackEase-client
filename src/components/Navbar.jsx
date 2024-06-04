@@ -12,7 +12,7 @@ const Navbar = () => {
        
      };
    }}>Home</NavLink>
-   <NavLink to={"/all-blogs"}
+   <NavLink to={'/join-as-employee'}
    style={({ isActive,}) => {
      return {
        fontWeight: isActive ? "bold" : "",
@@ -57,7 +57,7 @@ const Navbar = () => {
     <Link to={'/'}> <img src={logo} className="w-36" /> </Link>
   </div>
   <div className="navbar-end hidden text-xl font-semibold lg:flex">
-    <ul className="menu menu-horizontal px-1 flex gap-4">
+    <ul className="menu menu-horizontal px-1 text-xl flex gap-4">
      {Navbar}
     </ul>
   </div>
