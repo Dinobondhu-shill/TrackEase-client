@@ -1,6 +1,8 @@
+import Lottie from "lottie-react";
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import lottiejson from "../../../public/joinEmployee.json"
 
 
 const JoinEmployee = () => {
@@ -19,12 +21,17 @@ const JoinEmployee = () => {
   }
 
 return (
-<div className="pt-16">
+<div className="pt-16 flex gap-5 lg:px-20">
+<div className="w-2/3">
+  <h3 className="mt-10 font-semibold text-center text-3xl">Welcome Our Community, We're seeking manpower like you !</h3>
+  <Lottie animationData={lottiejson} loop={true}  />;
+  </div>
   {/* sign in form */}
-  <div>
+  <div className="w-1/3 my-10">
+    <h3 className=" font-medium text-2xl mb-5">Sign Up as a Employee</h3>
     <form onSubmit={handleJoinEmployee}>
       {/* full name field */}
-      <label className="form-control w-full ">
+      <label className="form-control w-full">
         <div className="label">
           <span className="label-text">Enter Your Full Name*</span>
         </div>
@@ -46,13 +53,17 @@ return (
       </label>
       {/* date of birth field */}
       <label className="form-control w-full my-5 ">
+      <div className="label">
+          <span className="label-text">Select Your date of birth*</span>
+        </div>
        <div>
-       <ReactDatePicker placeholderText="Select Your date of birth" className="border py-3 px-14 rounded-xl" selected={startDate} onChange={(date) => setStartDate(date)} />
+       <ReactDatePicker placeholderText="0/0/0000" className="border py-3 pr-28 pl-2 rounded-xl" selected={startDate} onChange={(date) => setStartDate(date)} />
        </div>
       </label>
       <input type="submit" value="Sign Up" className="border border-[#92e0e3] mx-auto px-4 py-2 rounded-lg "/>
     </form>
   </div>
+  
 </div>
 );
 };
