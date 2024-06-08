@@ -45,12 +45,12 @@ const [loginErr, setLoginErr] = useState('')
   // }
 
   return (
-    <div className="px-5 pt-20 md:px-10 py-8 text-center">
-      <h2 className="text-2xl font-caption pb-8"><span className="font-bold  text-3xl">Welcome to TrackEase!</span><br /> Login and connect with HR and grow your company together.</h2>
-     <div className="md:flex justify-between items-center pt-10">
+    <div className="px-5 pt-20 md:px-10  text-center">
+      <h2 className="text-2xl font-caption "><span className="font-bold  text-3xl">Welcome to TrackEase!</span><br /> Login and connect with HR and grow your company together.</h2>
+     <div className="md:flex flex-row-reverse justify-between items-center pt-10">
 
-     <div className="md:w-2/4 w-full">
-     <Lottie loop={true} animationData={loginL} className="w-full" />
+     <div className="md:w-2/4 w-[80%]">
+     <Lottie loop={true} animationData={loginL} className="w-[90%]" />
       </div>
       <div className="md:w-2/4 w-full md:ml-32">
       <form
