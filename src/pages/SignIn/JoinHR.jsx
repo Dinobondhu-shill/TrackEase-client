@@ -1,3 +1,4 @@
+
 import Lottie from "lottie-react";
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
@@ -6,7 +7,7 @@ import lottiejson from "../../../public/joinEmployee.json"
 import axios from "axios";
 
 
-const JoinEmployee = () => {
+const JoinHR = () => {
   const [startDate, setStartDate] = useState(null);
 
 
@@ -35,31 +36,34 @@ const imageUrl = response.data.data.url;
   }
 
 return (
-<div className="pt-16 flex gap-5 lg:px-20">
-<div className="w-2/3">
+<div className="pt-16 flex flex-row-reverse gap-5 lg:px-20">
+<div className="w-1/3">
   <h3 className="mt-10 font-semibold text-center text-3xl">Welcome Our Community, We're seeking manpower like you !</h3>
   <Lottie animationData={lottiejson} loop={true}/>
   </div>
   {/* sign in form */}
-  <div className="w-1/3 my-10">
-    <h3 className=" font-medium text-2xl mb-5">Sign Up as a Employee</h3>
+  <div className="w-2/3 my-10 border-r-2">
+    <h3 className=" font-medium text-2xl mb-5">Sign Up as a HR</h3>
     <form onSubmit={handleJoinEmployee}>
       {/* full name field */}
+      <div className="flex">
       <label className="form-control w-full">
         <div className="label">
           <span className="label-text">Enter Your Full Name*</span>
         </div>
         <input type="text" placeholder="Type here" name="fullName" className="input input-bordered w-full max-w-xs" required />
       </label>
-      {/* full name field */}
+      {/* image field */}
       <label className="form-control w-full">
         <div className="label">
           <span className="label-text">Select Your Photo*</span>
         </div>
         <input type="file" name="image" className="file-input file-input-bordered  file-input-sm w-full max-w-xs" required/>
       </label>
+      </div>
       {/* email field */}
-      <label className="form-control w-full ">
+     <div className="flex">
+     <label className="form-control w-full ">
         <div className="label">
           <span className="label-text">Enter Your Email Address*</span>
         </div>
@@ -72,6 +76,7 @@ return (
         </div>
         <input type="text" placeholder="Type here" name="password" className="input input-bordered w-full max-w-xs" required/>
       </label>
+     </div>
       {/* date of birth field */}
       <label className="form-control w-full my-5 ">
       <div className="label">
@@ -89,4 +94,4 @@ return (
 );
 };
 
-export default JoinEmployee;
+export default JoinHR;

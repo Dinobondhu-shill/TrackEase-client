@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Root from "../layout/Root";
 import JoinEmployee from "../pages/SignIn/JoinEmployee";
+import JoinHR from "../pages/SignIn/JoinHR";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path:'/join-as-employee',
         element:<JoinEmployee></JoinEmployee>
+      },
+      {
+        path:'/join-as-hr',
+        element:<JoinHR></JoinHR>
       }
     ]
   },

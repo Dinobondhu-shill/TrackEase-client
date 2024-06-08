@@ -20,7 +20,7 @@ const Navbar = () => {
        
      };
    }}>Join as Employee</NavLink>
-   <NavLink to={"/add-blog"}
+   <NavLink to={'/join-as-hr'}
    style={({ isActive,}) => {
      return {
        fontWeight: isActive ? "bold" : "",
