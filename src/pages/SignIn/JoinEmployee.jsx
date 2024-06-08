@@ -18,6 +18,7 @@ const JoinEmployee = () => {
     const role = 'employee';
     const image = form.image.files[0]
     const password= form.password.value
+    const company = null;
     const birthday = startDate;
     const formData = new FormData();
     formData.append('image', image);
@@ -29,7 +30,7 @@ const JoinEmployee = () => {
     });
 
 const imageUrl = response.data.data.url;
-    const employee = {name, email, role, birthday, imageUrl}
+    const employee = {name, email, role, birthday, imageUrl, company}
     console.log(employee)
 
   }
