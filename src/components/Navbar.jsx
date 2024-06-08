@@ -28,7 +28,7 @@ const Navbar = () => {
        
      };
    }}>Join as HR Manager</NavLink>
-   <NavLink to={"/featured-blog"}
+   <NavLink to={"/login"}
    style={({ isActive,}) => {
      return {
        fontWeight: isActive ? "bold" : "",
