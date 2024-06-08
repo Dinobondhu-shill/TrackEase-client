@@ -1,17 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../public/logo.png'
+import { useContext } from "react";
+import { AuthContext } from "../firebase/FirebaseProvider";
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext)
+  
   const Navbar = <>
-  <NavLink to={'/'}
-   style={({ isActive,}) => {
-     return {
-       fontWeight: isActive ? "bold" : "",
-       color: isActive ? "#0047AB" : "black",
-       
-       
-     };
-   }}>Home</NavLink>
+ <NavLink to={'/'}
+    style={({ isActive,}) => {
+      return {
+        fontWeight: isActive ? "bold" : "",
+        color: isActive ? "#0047AB" : "black",
+        
+        
+      };
+    }}>Home</NavLink>
+
    <NavLink to={'/join-as-employee'}
    style={({ isActive,}) => {
      return {
@@ -61,7 +66,27 @@ const Navbar = () => {
      {Navbar}
     </ul>
   </div>
-  
+  {/* User Profile */}
+  <div>
+  <div className="dropdown tooltip tooltip-bottom dropdown-end" data-tip={user?.displayName}>
+      <div tabIndex={0} role="button"  className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+        </div>
+      </div>
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li>
+          <a className="justify-between">
+            Update Profile
+          </a>
+        </li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    
+  </div>
 </div>
   );
 };

@@ -1,13 +1,15 @@
 import Lottie from "lottie-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import lottiejson from "../../../public/joinEmployee.json"
 import axios from "axios";
+import { AuthContext } from "../../firebase/FirebaseProvider";
 
 
 const JoinEmployee = () => {
   const [startDate, setStartDate] = useState(null);
+  const {createUser, updateUserProfile} = useContext(AuthContext)
 
 
   const handleJoinEmployee = async (event) => {
@@ -28,8 +30,16 @@ const JoinEmployee = () => {
         "content-type":'multipart/form-data'
       }
     });
-
 const imageUrl = response.data.data.url;
+    createUser(email, password)
+    .then((result)=>{
+      updateUserProfile(name, imageUrl)
+
+    })
+    .catch((error) => {
+      console.log( error.message);
+      // ..
+    });
     const employee = {name, email, role, birthday, imageUrl, company}
     console.log(employee)
 
