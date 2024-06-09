@@ -2,10 +2,13 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../../public/logo.png'
 import { useContext } from "react";
 import { AuthContext } from "../firebase/FirebaseProvider";
+import useRoll from "../hooks/useRoll";
+
 
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
-  console.log(user)
+const [role] = useRoll();
+
 
 
   const Navbar = <>
@@ -45,6 +48,43 @@ const Navbar = () => {
     }}>Login</NavLink>
    
   </>
+  const hrRoute = <>
+  <NavLink to={'/'}
+     style={({ isActive,}) => {
+       return {
+         fontWeight: isActive ? "bold" : "",
+         color: isActive ? "#0047AB" : "black",
+         
+         
+       };
+     }}>Home</NavLink>
+ 
+ <NavLink to={'/join-as-employee'}
+     style={({ isActive,}) => {
+       return {
+         fontWeight: isActive ? "bold" : "",
+         color: isActive ? "#0047AB" : "black",
+         
+       };
+     }}>Asset List</NavLink>
+     <NavLink to={'/join-as-hr'}
+     style={({ isActive,}) => {
+       return {
+         fontWeight: isActive ? "bold" : "",
+         color: isActive ? "#0047AB" : "black",
+         
+       };
+     }}>Add an Asset</NavLink>
+     <NavLink to={"/login"}
+     style={({ isActive,}) => {
+       return {
+         fontWeight: isActive ? "bold" : "",
+         color: isActive ? "#0047AB" : "black",
+         
+       };
+     }}>All Requst</NavLink>
+    
+   </>
 
   return (
     <div className="navbar fixed z-10 bg-[#bab1b13a] px-16">
