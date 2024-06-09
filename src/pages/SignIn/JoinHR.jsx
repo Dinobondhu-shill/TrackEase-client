@@ -34,6 +34,7 @@ const JoinHR = () => {
     const companyLogo = form.companyLogo.files[0]
     const password= form.password.value
     const birthday = startDate;
+    const packages = selectedOption.value
    
     const uploadImage = async (image) => {
       const formData = new FormData();
@@ -49,13 +50,13 @@ const JoinHR = () => {
     const imageUrl1 = await uploadImage(image);
     const imageUrl2 = await uploadImage(companyLogo);
 
-    const hr = {name, email, role, birthday, imageUrl1, imageUrl2, password, company}
+    const hr = {name, email, role, birthday, imageUrl1, imageUrl2, password, company, packages}
     console.log(hr)
     createUser(email, password)
     .then(async(result)=>{
        // send users data after login
        const response = await axios.post('http://localhost:5000/users', hr)
-       console.log(response.data)
+       
 
       //  update users profile
       await updateUserProfile(name, imageUrl1)
@@ -158,7 +159,7 @@ return (
       </label>
       </div>
       <div className="mr-16">
-      <input type="submit" value="Sign Up" className="border py-2  border-[#92e0e3] w-full my-6  rounded-lg "/>
+      <input type="submit" value="Sign Up" className="border py-2 cursor-pointer  border-[#92e0e3] w-full my-6  rounded-lg "/>
       </div>
     </form>
   </div>

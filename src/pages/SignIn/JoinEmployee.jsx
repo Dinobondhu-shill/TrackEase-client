@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 const JoinEmployee = () => {
   const [startDate, setStartDate] = useState(null);
-  const {createUser, updateUserProfile} = useContext(AuthContext)
+  const [error, setError] = useState('')
+  const {createUser, updateUserProfile, loading} = useContext(AuthContext)
   const navigate = useNavigate();
 
 
@@ -50,7 +51,7 @@ console.log(employee)
 
     })
     .catch((error) => {
-      console.log(error.message);
+      setError(error.massage)
      
     });
    
@@ -104,6 +105,7 @@ return (
        <ReactDatePicker placeholderText="0/0/0000" className="border py-3 pr-28 pl-2 rounded-xl" selected={startDate} onChange={(date) => setStartDate(date)} />
        </div>
       </label>
+      {error && <p className="text-red-500">{error}</p>}
       <input type="submit" value="Sign Up" className="border cursor-pointer border-[#92e0e3] mx-auto px-4 py-2 rounded-lg "/>
     </form>
   </div>
