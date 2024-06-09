@@ -5,11 +5,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import lottiejson from "../../../public/joinEmployee.json"
 import axios from "axios";
 import { AuthContext } from "../../firebase/FirebaseProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 
 const JoinEmployee = () => {
   const [startDate, setStartDate] = useState(null);
   const {createUser, updateUserProfile} = useContext(AuthContext)
+  const navigate = useNavigate();
 
 
   const handleJoinEmployee = async (event) => {
@@ -34,11 +37,13 @@ const imageUrl = response.data.data.url;
     createUser(email, password)
     .then((result)=>{
       updateUserProfile(name, imageUrl)
+      navigate(location?.state || '/')
+      Swal("You are now logged in")
 
     })
     .catch((error) => {
       console.log( error.message);
-      // ..
+     
     });
     const employee = {name, email, role, birthday, imageUrl, company}
     console.log(employee)
@@ -92,7 +97,7 @@ return (
        <ReactDatePicker placeholderText="0/0/0000" className="border py-3 pr-28 pl-2 rounded-xl" selected={startDate} onChange={(date) => setStartDate(date)} />
        </div>
       </label>
-      <input type="submit" value="Sign Up" className="border border-[#92e0e3] mx-auto px-4 py-2 rounded-lg "/>
+      <input type="submit" value="Sign Up" className="border cursor-pointer border-[#92e0e3] mx-auto px-4 py-2 rounded-lg "/>
     </form>
   </div>
   

@@ -4,8 +4,10 @@ import { useContext } from "react";
 import { AuthContext } from "../firebase/FirebaseProvider";
 
 const Navbar = () => {
-  const {user} = useContext(AuthContext)
-  
+  const {user, logOut} = useContext(AuthContext)
+  console.log(user)
+
+
   const Navbar = <>
  <NavLink to={'/'}
     style={({ isActive,}) => {
@@ -17,32 +19,30 @@ const Navbar = () => {
       };
     }}>Home</NavLink>
 
-   <NavLink to={'/join-as-employee'}
-   style={({ isActive,}) => {
-     return {
-       fontWeight: isActive ? "bold" : "",
-       color: isActive ? "#0047AB" : "black",
-       
-     };
-   }}>Join as Employee</NavLink>
-   <NavLink to={'/join-as-hr'}
-   style={({ isActive,}) => {
-     return {
-       fontWeight: isActive ? "bold" : "",
-       color: isActive ? "#0047AB" : "black",
-       
-     };
-   }}>Join as HR Manager</NavLink>
-   <NavLink to={"/login"}
-   style={({ isActive,}) => {
-     return {
-       fontWeight: isActive ? "bold" : "",
-       color: isActive ? "#0047AB" : "black",
-       
-     };
-   }}>Login</NavLink>
-   
-   
+<NavLink to={'/join-as-employee'}
+    style={({ isActive,}) => {
+      return {
+        fontWeight: isActive ? "bold" : "",
+        color: isActive ? "#0047AB" : "black",
+        
+      };
+    }}>Join as Employee</NavLink>
+    <NavLink to={'/join-as-hr'}
+    style={({ isActive,}) => {
+      return {
+        fontWeight: isActive ? "bold" : "",
+        color: isActive ? "#0047AB" : "black",
+        
+      };
+    }}>Join as HR Manager</NavLink>
+    <NavLink to={"/login"}
+    style={({ isActive,}) => {
+      return {
+        fontWeight: isActive ? "bold" : "",
+        color: isActive ? "#0047AB" : "black",
+        
+      };
+    }}>Login</NavLink>
    
   </>
 
@@ -63,26 +63,28 @@ const Navbar = () => {
   </div>
   <div className="navbar-end hidden text-xl font-semibold lg:flex">
     <ul className="menu menu-horizontal px-1 text-xl flex gap-4">
-     {Navbar}
+     {!user? Navbar: 'user'}
     </ul>
   </div>
   {/* User Profile */}
   <div>
-  <div className="dropdown tooltip tooltip-bottom dropdown-end" data-tip={user?.displayName}>
-      <div tabIndex={0} role="button"  className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
-        </div>
+  {
+    user && <div className="dropdown tooltip tooltip-bottom dropdown-end" data-tip={user?.displayName}>
+    <div tabIndex={0} role="button"  className="btn btn-ghost btn-circle avatar">
+      <div className="w-10 rounded-full">
+        <img alt={user?.displayName} src={user?.photoURL} />
       </div>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <a className="justify-between">
-            Update Profile
-          </a>
-        </li>
-        <li><a>Logout</a></li>
-      </ul>
     </div>
+    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+      <li>
+        <a className="justify-between">
+          Update Profile
+        </a>
+      </li>
+      <li><a onClick={logOut}>Logout</a></li>
+    </ul>
+  </div>
+  }
   </div>
   <div>
     

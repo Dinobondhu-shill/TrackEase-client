@@ -19,11 +19,13 @@ const FirebaseProvider = ({children}) => {
     return createUserWithEmailAndPassword(auth, email, password)
   }
    //  Update User Profile
-const updateUserProfile =(name, image)=>{
-  return updateProfile(auth.currentUser, {
+const updateUserProfile = (name, image)=>{
+  const updates = {
     displayName: name, 
-    photoURL: image
-  })
+    photoURL: image,
+    
+  }
+  return updateProfile(auth.currentUser, updates )
 }
   // observer
   useEffect(()=>{
