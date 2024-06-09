@@ -1,13 +1,15 @@
-import {  useState } from "react";
+import {  useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link,  useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import loginL from "../../../public/login.json"
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { SiFacebook } from "react-icons/si";
 import { ToastContainer } from "react-toastify";
+import { AuthContext } from "../../firebase/FirebaseProvider";
+import Swal from "sweetalert2";
 
 
 
@@ -15,8 +17,9 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 const [login, setLogin] = useState('')
 const [loginErr, setLoginErr] = useState('')
-// const navigate = useNavigate();
-// const location = useLocation();
+const {signIn} = useContext(AuthContext)
+const navigate = useNavigate();
+const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -26,16 +29,16 @@ const [loginErr, setLoginErr] = useState('')
 
   const onSubmit = (data) => {
     console.log(data.Email, data.Password)
-    // signIn(data.Email, data.Password)
-    // .then(res=>{
-    //   setLogin('login successful')
-    //   navigate(location?.state || '/')
-    //   Swal("You are now logged in")
-    // })
-    // .catch(error=>{
-    //   console.log(error)
-    //   setLoginErr('Email or Password is not correct')
-    // })
+    signIn(data.Email, data.Password)
+    .then(res=>{
+      setLogin('login successful')
+      navigate(location?.state || '/')
+      Swal("You are now logged in")
+    })
+    .catch(error=>{
+      console.log(error)
+      setLoginErr('Email or Password is not correct')
+    })
   }
   // const handleSocailLogin = socialProvider =>{
   //   socialProvider ()

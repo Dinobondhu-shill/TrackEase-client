@@ -34,19 +34,26 @@ const JoinEmployee = () => {
       }
     });
 const imageUrl = response.data.data.url;
+const employee = {name, email, role, birthday, imageUrl, company}
+console.log(employee)
     createUser(email, password)
-    .then((result)=>{
-      updateUserProfile(name, imageUrl)
+    .then(async(result)=>{
+       // send users data after login
+       const response = await axios.post('http://localhost:5000/users', employee)
+       console.log(response.data)
+
+      //  update users profile
+      await updateUserProfile(name, imageUrl)
       navigate(location?.state || '/')
       Swal("You are now logged in")
+     
 
     })
     .catch((error) => {
-      console.log( error.message);
+      console.log(error.message);
      
     });
-    const employee = {name, email, role, birthday, imageUrl, company}
-    console.log(employee)
+   
 
   }
 

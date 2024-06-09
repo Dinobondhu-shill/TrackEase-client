@@ -1,6 +1,7 @@
 import { FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "./firebase.config";
+import Swal from "sweetalert2";
 
 
 export const AuthContext = createContext(null);
@@ -64,7 +65,7 @@ const updateUserProfile = (name, image)=>{
       setUser(null)
       signOut(auth)
       .then(()=>{
-        swal('Log out successful')
+        Swal('Log out successful')
       })
     }
 

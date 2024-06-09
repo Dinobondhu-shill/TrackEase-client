@@ -1,17 +1,21 @@
 
 import Lottie from "lottie-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import lottiejson from "../../../public/joinhr.json"
 import axios from "axios";
 import Select from 'react-select'
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../firebase/FirebaseProvider";
+import Swal from "sweetalert2";
 
 
 const JoinHR = () => {
   const [startDate, setStartDate] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const {createUser, updateUserProfile} = useContext(AuthContext)
+  const navigate = useNavigate();
   const options = [
     { value: 'basic', label: '5 members for $5' },
     { value: 'standard', label: '10 members for $8' },
@@ -47,6 +51,23 @@ const JoinHR = () => {
 
     const hr = {name, email, role, birthday, imageUrl1, imageUrl2, password, company}
     console.log(hr)
+    createUser(email, password)
+    .then(async(result)=>{
+       // send users data after login
+       const response = await axios.post('http://localhost:5000/users', hr)
+       console.log(response.data)
+
+      //  update users profile
+      await updateUserProfile(name, imageUrl1)
+      navigate(location?.state || '/')
+      Swal("You are now logged in")
+     
+
+    })
+    .catch((error) => {
+      console.log(error.message);
+     
+    });
 
   }
 
