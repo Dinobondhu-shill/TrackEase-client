@@ -1,23 +1,37 @@
 
+import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Select from 'react-select'
+import Swal from "sweetalert2";
 
 const UpdateAsset = () => {
 const asset = useLoaderData()
-  const [selectedOption, setSelectedOption] = useState(asset.productType);
+  const [selectedOption, setSelectedOption] = useState(null);
   const options = [
     { value: 'returnable', label: 'Returnable' },
     { value: 'non-returnable', label: 'Non-Returnable' },
   ]
-  const handleUpdateAsset = (e) =>{
+  const handleUpdateAsset = async (e) =>{
     e.preventDefault()
     const form = e.target
     const product = form.product.value
     const productType = selectedOption.value
     const quantity = parseInt(form.quantity.value)
-
     const updatedAsset = {product, productType, quantity}
+
+    const res = await axios.put(`http://localhost:5000/update-assets/${asset?._id}`, updatedAsset);
+    console.log(res.data);
+    if(res.data.modifiedCount>0){
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Your Asset has been Updated",
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
+
   }
   return (
     <div className="pt-24 px-24 w-4/6 mx-auto">
