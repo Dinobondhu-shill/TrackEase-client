@@ -11,7 +11,6 @@ const useRoll = () => {
   enabled:!!user, 
   queryFn: async()=>{
     const res = await axios.get(`http://localhost:5000/users/${user?.email}`)
-    console.log(res.data)
     return [res?.data?.role, res.data.imageUrl2]
   }
  })

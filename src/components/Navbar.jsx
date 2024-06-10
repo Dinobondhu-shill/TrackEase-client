@@ -8,7 +8,6 @@ import useRoll from "../hooks/useRoll";
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
 const [role] = useRoll();
-console.log(role)
 
 
   const Navbar = <>
@@ -59,7 +58,7 @@ console.log(role)
        };
      }}>Home</NavLink>
  
- <NavLink to={'/join-as-employee'}
+ <NavLink to={'/hr/assets'}
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
@@ -67,7 +66,7 @@ console.log(role)
          
        };
      }}>Asset List</NavLink>
-     <NavLink to={'/join-as-hr'}
+     <NavLink to={'/hr/add-asset'}
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
