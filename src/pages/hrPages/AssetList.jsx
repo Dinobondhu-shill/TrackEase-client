@@ -4,14 +4,15 @@ import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AssetList = () => {
-  const [filter, setFilter] = useState([])
+  const [filter, setFilter] = useState('')
   const [filter2, setFilter2] = useState([])
   const [sort, setSort] = useState([])
   const [search, setSearch] = useState([])
 
-  const {data:assets={}, isPending} = useQuery({
+  const {data:assets={}, isPending, refetch} = useQuery({
     queryKey:['assets'],
     
     queryFn: async()=>{
@@ -25,6 +26,24 @@ const AssetList = () => {
       const searchText = e.target.search.value
     setSearch(searchText)
     }
+    const handleDeleteAsset =async(id)=>{
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+        })
+        .then((result) => {
+          if (result.isConfirmed){
+            const res = axios.delete(`http://localhost:5000/delete-asset/${id}`)
+            console.log(res.data)
+            refetch()
+          }
+        })
+    }
 
     if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
@@ -36,6 +55,7 @@ const AssetList = () => {
      <div className="flex justify-between items-center">
      <div className="dropdown dropdown-hover">
   <select
+ 
     onChange={e => setFilter(e.target.value)}
     name='status'
     id="status"
@@ -107,7 +127,7 @@ className="input input-bordered mt-5 flex items-center gap-2">
           <th>
             <div className="flex gap-2 text-2xl ">
               <Link to={`/hr/assets/${asset._id}`} data-tip='Edit'  className="border-r-2 pr-3 tooltip text-[#85adb2da]"><FaEdit /></Link>
-              <span data-tip='Delete' className="pl-3 text-3xl tooltip text-[#ce1e1eda]"><MdDelete /></span>
+              <Link onClick={()=> handleDeleteAsset(asset._id)} data-tip='Delete' className="pl-3 text-3xl tooltip text-[#ce1e1eda]"><MdDelete /></Link>
             </div>
           </th>
         </tr>)

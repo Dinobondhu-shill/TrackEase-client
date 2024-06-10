@@ -25,13 +25,13 @@ const AddAsset = () => {
     .then(res=>{
       if(res.data.insertedId){
         Swal.fire({
-          position: "top-center",
           icon: "success",
           title: "Your Asset has been added",
           showConfirmButton: false,
           timer: 2500
         });
       }
+      form.reset()
     })
     .catch(error => {
       console.error('Error adding asset:', error);
