@@ -1,11 +1,13 @@
 import axios from 'axios';
 import moment from 'moment';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 import Swal from 'sweetalert2';
 
 const AddAsset = () => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const navigate = useNavigate()
   const options = [
     { value: 'returnable', label: 'Returnable' },
     { value: 'non-returnable', label: 'Non-Returnable' },
@@ -32,6 +34,7 @@ const AddAsset = () => {
         });
       }
       form.reset()
+      navigate('/hr/assets')
     })
     .catch(error => {
       console.error('Error adding asset:', error);

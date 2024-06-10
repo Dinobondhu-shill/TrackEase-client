@@ -90,7 +90,7 @@ const [role] = useRoll();
          
        };
      }}>My Employee List</NavLink>
-      <NavLink to={"/login"}
+      <NavLink to={"/add-employee"}
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
@@ -195,7 +195,7 @@ const [role] = useRoll();
       </div>
     </div>
     }
-    if(role==='employee'){
+    if(role[0]==='employee'){
       return <div className="navbar fixed z-10 bg-[#bab1b13a] px-5">
       <div className="navbar-start">
         <div className="dropdown">

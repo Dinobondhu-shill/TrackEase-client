@@ -36,11 +36,17 @@ const AssetList = () => {
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!"
         })
-        .then((result) => {
+        .then(async(result) => {
           if (result.isConfirmed){
-            const res = axios.delete(`http://localhost:5000/delete-asset/${id}`)
-            console.log(res.data)
+            const res = await axios.delete(`http://localhost:5000/delete-asset/${id}`)
             refetch()
+            if(res.data.deletedCount > 0){
+              Swal.fire({
+              title: "Deleted!",
+              text: "Your wishlist blog has been deleted.",
+              icon: "success"
+              });
+              }
           }
         })
     }
@@ -49,7 +55,7 @@ const AssetList = () => {
 
   return (
     <div className="pt-24 px-16">
-      <h2 className="text-3xl font-bold text-center underline">All Asset Of Your Company</h2>
+      <h2 className="text-3xl font-semibold text-center underline">All Asset Of Your Company</h2>
       <div className="">
         {/* search bar and filter section */}
      <div className="flex justify-between items-center">
