@@ -12,12 +12,12 @@ const AddEmployee = () => {
       return res.data
     }
     });
-    console.log(freeEmployee)
+    if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
   return (
-    <div className="pt-24 px-10">
+    <div className="pt-24 px-20 flex flex-col items-center justify-center">
       <h2 className="text-3xl font-semibold text-center underline">Collaborate With New Employee</h2>
-      <div>
-        <EmployeeCard></EmployeeCard>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto w-full my-10">
+        {freeEmployee && freeEmployee.map(person=> <EmployeeCard key={person._id} person={person} refetch={refetch}></EmployeeCard>)}
       </div>
     </div>
   );
