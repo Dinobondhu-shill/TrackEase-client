@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const AssetList = () => {
   const [filter, setFilter] = useState([])
@@ -105,7 +106,7 @@ className="input input-bordered mt-5 flex items-center gap-2">
             <td>{asset?.addedDate}</td>
           <th>
             <div className="flex gap-2 text-2xl ">
-              <span data-tip='Edit'  className="border-r-2 pr-3 tooltip text-[#85adb2da]"><FaEdit /></span>
+              <Link to={`/hr/assets/${asset._id}`} data-tip='Edit'  className="border-r-2 pr-3 tooltip text-[#85adb2da]"><FaEdit /></Link>
               <span data-tip='Delete' className="pl-3 text-3xl tooltip text-[#ce1e1eda]"><MdDelete /></span>
             </div>
           </th>
