@@ -8,6 +8,7 @@ import AddAsset from "../pages/hrPages/AddAsset";
 import AssetList from "../pages/hrPages/AssetList";
 import UpdateAsset from "../pages/hrPages/UpdateAsset";
 import AddEmployee from "../pages/hrPages/AddEmployee";
+import MyEmployee from "../pages/hrPages/MyEmployee";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ export const router = createBrowserRouter([
       {
         path:"/add-employee",
         element:<AddEmployee></AddEmployee>
+      },
+      {
+        path:'/my-employee',
+        element:<MyEmployee></MyEmployee>
+        
       }
     ]
   },
