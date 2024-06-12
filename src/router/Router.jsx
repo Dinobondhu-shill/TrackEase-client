@@ -12,6 +12,7 @@ import MyEmployee from "../pages/hrPages/MyEmployee";
 import RequestForAsset from "../pages/Employee/RequestForAsset";
 import MyTeam from "../pages/Employee/MyTeam";
 import MyAsset from "../pages/Employee/MyAsset";
+import AllRequest from "../pages/hrPages/AllRequest";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
         path:"/add-employee",
         element:<AddEmployee></AddEmployee>
       },
+      {
+        path:'/all-request',
+        element: <AllRequest></AllRequest>
+      }, 
       {
         path:'/my-employee',
         element:<MyEmployee></MyEmployee>

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useRoll from "../../hooks/useRoll";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../firebase/FirebaseProvider";
 import moment from "moment";
 import Swal from "sweetalert2";
@@ -13,6 +13,7 @@ const RequestForAsset = () => {
   const requestedDate = moment().format('YYYY-MM-DD');
   const requesterEmail = user?.email;
   const requesterName = user?.displayName;
+  const [selectedAssetId, setSelectedAssetId] = useState(null);
 
   const { data: allAsset = [], isPending, refetch } = useQuery({
     queryKey: [company, 'assets'],
@@ -48,9 +49,16 @@ const RequestForAsset = () => {
       console.error('Error sending request:', error);
     }
   };
+  const openModal = (id) => {
+    setSelectedAssetId(id);
+    document.getElementById(`modal_${id}`).showModal();
+  };
 
-  const closeModal = () => {
-    document.getElementById('my_modal_3').close();
+    const closeModal = () => {
+    if (selectedAssetId) {
+      document.getElementById(`modal_${selectedAssetId}`).close();
+      setSelectedAssetId(null);
+    }
   };
 
   return (
@@ -81,13 +89,13 @@ const RequestForAsset = () => {
                 <th>
                   <div>
                     <button
-                      onClick={() => document.getElementById('my_modal_3').showModal()}
+                     onClick={() => openModal(asset._id)}
                       className={`${asset.quantity > 0 ? '' : 'disabled'} border py-2 px-4 rounded-md hover:bg-slate-400`}
                     >
                       Request
                     </button>
 
-                    <dialog id="my_modal_3" className="modal text-center">
+                    <dialog id={`modal_${asset._id}`} className="modal text-center">
                       <div className="modal-box">
                         <h2 className="text-center text-xl font-normal mt-3 mb-5">Write your note here for this asset to the HR</h2>
                         <form method="dialog">

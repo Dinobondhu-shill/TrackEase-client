@@ -19,14 +19,16 @@ setSearch(searchText)
 }
 
 const {data:myAssets={}, isPending, refetch} = useQuery({
-queryKey:['assets'],
+queryKey:['requested assets'],
 
 queryFn: async()=>{
 const res = await axios.get(`http://localhost:5000/my-asset/${email}`)
 return res.data
 }
 });
-console.log(myAssets)
+
+
+if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
 return (
 <div className="pt-24 px-20">
@@ -95,7 +97,15 @@ return (
           </td>
           <td>{asset?.requestedDate}</td>
           <td>{asset?.approvedDate ? asset?.approvedDate : '-'}</td>
-            <td>{asset?.status}</td>
+          <td>{asset?.status}</td>
+          <td>
+            { asset?.status ==='pending' ? <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Cancel</div>:
+              asset?.status === 'approved' && asset.productType ==='returnable' ? <div>
+                <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Print</div>
+                <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Return</div>
+              </div> : <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Cancel</div>
+            }
+          </td>
           
         </tr>)
       }
