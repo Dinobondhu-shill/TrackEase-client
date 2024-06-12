@@ -2,6 +2,7 @@ import { FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, createUse
 import { createContext, useEffect, useState } from "react";
 import auth from "./firebase.config";
 import Swal from "sweetalert2";
+import { Navigate } from "react-router-dom";
 
 
 export const AuthContext = createContext(null);
@@ -12,7 +13,8 @@ const facebookProvider = new FacebookAuthProvider()
 
 const FirebaseProvider = ({children}) => {
   const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+ 
 
   // create user with email and password
   const createUser = (email, password)=>{
@@ -66,6 +68,7 @@ const updateUserProfile = (name, image)=>{
       signOut(auth)
       .then(()=>{
         Swal('Log out successful')
+        Navigate('/')
       })
     }
 

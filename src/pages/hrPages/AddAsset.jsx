@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 import Swal from 'sweetalert2';
+import useRoll from '../../hooks/useRoll';
 
 const AddAsset = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate()
+  const [companyDetails] = useRoll()
   const options = [
     { value: 'returnable', label: 'Returnable' },
     { value: 'non-returnable', label: 'Non-Returnable' },
@@ -20,8 +22,9 @@ const AddAsset = () => {
     const productType = selectedOption.value
     const quantity = parseInt(form.quantity.value)
     const addedDate = moment().format('LL');
+    const company = companyDetails[2]
 
-    const asset = {product, productType, quantity, addedDate}
+    const asset = {product, productType, quantity, addedDate, company}
     // add asset data to the database
    axios.post('http://localhost:5000/add-asset', asset)
     .then(res=>{
