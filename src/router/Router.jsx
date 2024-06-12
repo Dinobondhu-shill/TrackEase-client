@@ -11,6 +11,7 @@ import AddEmployee from "../pages/hrPages/AddEmployee";
 import MyEmployee from "../pages/hrPages/MyEmployee";
 import RequestForAsset from "../pages/Employee/RequestForAsset";
 import MyTeam from "../pages/Employee/MyTeam";
+import MyAsset from "../pages/Employee/MyAsset";
 
 export const router = createBrowserRouter([
   {
@@ -57,11 +58,15 @@ export const router = createBrowserRouter([
       },
       {
         path:'/employee/request-for-assets',
-        element:<RequestForAsset></RequestForAsset>
+        element:<RequestForAsset></RequestForAsset>,
       },
       {
         path: '/employee/my-team',
-        element:<MyTeam></MyTeam>
+        element:<MyTeam></MyTeam>,
+      },
+      {
+        path:'/my-asset-list',
+        element:<MyAsset></MyAsset>
       }
     ]
   },

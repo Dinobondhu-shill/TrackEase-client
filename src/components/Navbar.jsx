@@ -112,7 +112,7 @@ const [role] = useRoll();
         };
       }}>Home</NavLink>
   
-  <NavLink to={'/join-as-employee'}
+  <NavLink to={'/my-asset-list'}
       style={({ isActive,}) => {
         return {
           fontWeight: isActive ? "bold" : "",

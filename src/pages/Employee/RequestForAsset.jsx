@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useRoll from "../../hooks/useRoll";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/FirebaseProvider";
 import moment from "moment";
@@ -37,7 +36,6 @@ const RequestForAsset = () => {
       const res = await axios.put(`http://localhost:5000/request-for-asset/${id}`, requestAsset);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
-          position: "top-center",
           icon: "success",
           title: "Request has been sent",
           showConfirmButton: false,
