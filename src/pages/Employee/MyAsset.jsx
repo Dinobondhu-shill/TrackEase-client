@@ -84,7 +84,7 @@ return (
     </thead>
     <tbody>
       {
-       myAssets && myAssets.map(asset=> <tr key={asset._id}>
+       myAssets && myAssets?.map(asset=> <tr key={asset._id}>
           <td>
             <div className="flex items-center gap-3">
               <div>

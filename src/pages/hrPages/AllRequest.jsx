@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import moment from "moment";
 import { FaCheck } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
 
@@ -14,7 +15,18 @@ const res = await axios.get('http://localhost:5000/requested-assets')
 return res.data
 }
 });
-console.log(reqAssets)
+
+const handleApprove = async(id) =>{
+  const status = 'approved'
+  const approvedDate = moment().format('YYYY-MM-DD');
+ const updateDoc = {status, approvedDate}
+  const res = await axios.patch(`http://localhost:5000/approve-asset/${id}`, updateDoc)
+  console.log(res.data)
+  // if(res.data.modifiedCount>0){
+  //   alert('Request has been approved')
+  // }
+ 
+}
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
@@ -42,7 +54,7 @@ return (
       </thead>
       <tbody>
         {
-        reqAssets && reqAssets.map(asset=> <tr key={asset._id}>
+        reqAssets && reqAssets.map(asset=> <tr key={asset.assetId}>
           <td>
             <div className="flex items-center gap-3">
               <div>
@@ -66,7 +78,9 @@ return (
           <td>{asset?.status}</td>
             <td>
               <div className="flex gap-3 justify-center mr-3 text-2xl ">
-              <div className="cursor-pointer">
+              <div
+              onClick={()=>handleApprove(asset.assetId)}
+               className="cursor-pointer">
               <FaCheck className="text-green-400 "/>
               </div>
               <div className="divider lg:divider-horizontal"></div> 

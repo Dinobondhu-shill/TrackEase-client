@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 const RequestForAsset = () => {
   const [companyDetails] = useRoll();
   const company = companyDetails[2];
+  console.log(companyDetails)
   const { user } = useContext(AuthContext);
   const requestedDate = moment().format('YYYY-MM-DD');
   const requesterEmail = user?.email;
@@ -23,19 +24,21 @@ const RequestForAsset = () => {
       return res.data;
     }
   });
+  console.log(allAsset)
 
   if (isPending) return <span className="loading block mx-auto pt-52 text-6xl text-center loading-spinner text-info"></span>;
 
   // handle request for asset
-  const handleRequestAsset = async (id, event) => {
+  const handleRequestAsset = async (id, event, product, productType) => {
     event.preventDefault();
     const note = event.target.note.value;
     const status = 'pending';
-    const requestAsset = { note, requestedDate, status, requesterEmail, requesterName };
+    
+    const requestAsset = { note, requestedDate, status, requesterEmail, requesterName, product, productType , company, assetId:id};
 
     try {
-      const res = await axios.put(`http://localhost:5000/request-for-asset/${id}`, requestAsset);
-      if (res.data.modifiedCount > 0) {
+      const res = await axios.post(`http://localhost:5000/request-for-asset`, requestAsset);
+      if (res.data.insertedId) {
         Swal.fire({
           icon: "success",
           title: "Request has been sent",
@@ -101,7 +104,7 @@ const RequestForAsset = () => {
                         <form method="dialog">
                           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={closeModal}>✕</button>
                         </form>
-                        <form onSubmit={(event) => handleRequestAsset(asset._id, event)}>
+                        <form onSubmit={(event) => handleRequestAsset(asset._id, event, asset.product, asset.productType)}>
                           <input type="text" name="note" placeholder="Write Note for the asset..." className="input input-bordered w-full max-w-xs" required />
                           <br />
                           <input value="request" type="submit" className="border px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg" />
