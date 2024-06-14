@@ -35,7 +35,7 @@ return (
   <h2 className="text-3xl font-semibold text-center underline">Your Requested Assets</h2>
   {/* search bar and filter section */}
   <div className="flex justify-between items-center">
-    
+
     <div className="dropdown dropdown-hover">
       <select onChange={e=> setFilter2(e.target.value)}
         name='type'
@@ -69,22 +69,22 @@ return (
   </div>
   {/* assets data mapping */}
   <div className="overflow-x-auto pt-24">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Product Type</th>
-        <th>Requested Date
-        </th>
-        <th>Approved Date</th>
-        <th>Request Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {
-       myAssets && myAssets?.map(asset=> <tr key={asset._id}>
+    <table className="table">
+      {/* head */}
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Type</th>
+          <th>Requested Date
+          </th>
+          <th>Approved Date</th>
+          <th>Request Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+        myAssets && myAssets?.map(asset=> <tr key={asset._id}>
           <td>
             <div className="flex items-center gap-3">
               <div>
@@ -99,23 +99,45 @@ return (
           <td>{asset?.approvedDate ? asset?.approvedDate : '-'}</td>
           <td>{asset?.status}</td>
           <td>
-            { asset?.status ==='pending' ? <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Cancel</div>:
-              asset?.status === 'approved' && asset.productType ==='returnable' ? <div>
-                <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Print</div>
-                <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Return</div>
-              </div> : <div className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">Cancel</div>
-            }
-          </td>
-          
-        </tr>)
-      }
-      
-     
-    </tbody>
+            { asset?.status === 'pending' ? (
+            <div
+              className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
+              Cancel
+            </div>
+            ) : asset?.status === 'approved' && asset.productType === 'returnable' ? (
+            <div>
+              <div
+                className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
+                Print
+              </div>
+              <div
+                className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
+                Return
+              </div>
+            </div>
+            ) : asset?.status === 'rejected' ? (
+            <div
+              className="border w-fit px-6 py-3 bg-gray-200 font-bold cursor-not-allowed border-gray-200 mt-6 rounded-lg">
+              Cancel
+            </div>
+            ) : (
+            <div
+              className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
+              Cancel
+            </div>
+            )}
 
-    
-  </table>
-</div>
+          </td>
+
+        </tr>)
+        }
+
+
+      </tbody>
+
+
+    </table>
+  </div>
 </div>
 );
 };

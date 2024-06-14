@@ -15,6 +15,12 @@ const res = await axios.get('http://localhost:5000/requested-assets')
 return res.data
 }
 });
+if(reqAssets.length === 0 ) return <div>
+  <div className="pt-24 px-12">
+  <h2 className="text-3xl font-semibold text-center underline">Request For Assets</h2>
+
+  <div className="py-20 font-bold text-center text-3xl">You don't have any asset request</div>
+  </div></div>
 
 const handleApprove = async(id) =>{
   const status = 'approved'
@@ -22,11 +28,22 @@ const handleApprove = async(id) =>{
  const updateDoc = {status, approvedDate}
   const res = await axios.patch(`http://localhost:5000/approve-asset/${id}`, updateDoc)
   console.log(res.data)
-  // if(res.data.modifiedCount>0){
-  //   alert('Request has been approved')
-  // }
- 
+  if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
+    alert('Request has been approved')
+  }
+  refetch()
 }
+
+const handleDelete = async(id) =>{
+  const status = 'rejected'
+  const res = await axios.patch(`http://localhost:5000/reject-asset/${id}`, {status})
+  console.log(res.data)
+  if(res?.data.modifiedCount > 0){
+    alert('Request has been rejected')
+}
+refetch()
+}
+
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
@@ -78,13 +95,17 @@ return (
           <td>{asset?.status}</td>
             <td>
               <div className="flex gap-3 justify-center mr-3 text-2xl ">
-              <div
-              onClick={()=>handleApprove(asset.assetId)}
-               className="cursor-pointer">
-              <FaCheck className="text-green-400 "/>
-              </div>
+              
+                <div
+                onClick={()=>handleApprove(asset.assetId)}
+                 className="cursor-pointer">
+                <FaCheck className="text-green-400 "/>
+                </div> 
+              
               <div className="divider lg:divider-horizontal"></div> 
-             <div className="cursor-pointer"> <GiCrossMark className="text-red-400  ml-3"/></div>
+             <div 
+             onClick={()=>handleDelete(asset.assetId)}
+             className="cursor-pointer"> <GiCrossMark className="text-red-400  ml-3"/></div>
 
               </div>
             </td>
