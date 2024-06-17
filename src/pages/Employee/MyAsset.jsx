@@ -27,6 +27,11 @@ return res.data
 }
 });
 
+const handleCancelAsset = async(id) =>{
+  const res = await axios.delete(`http://localhost:5000/delete-req/${id}`)
+  console.log(res.data)
+  refetch()
+}
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
@@ -101,31 +106,34 @@ return (
           <td>
             { asset?.status === 'pending' ? (
             <div
-              className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
+            onClick={()=>handleCancelAsset(asset?._id)}
+              className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
               Cancel
             </div>
-            ) : asset?.status === 'approved' && asset.productType === 'returnable' ? (
+            ) : asset?.status === 'approved' && asset?.productType === 'returnable' ? (
+              <div className="flex gap-4">
+                <div
+                  className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
+                  Print
+                </div>
+                <div
+                  className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3]  rounded-lg">
+                  Return
+                </div>
+              </div>
+              ) : asset?.status === 'approved' ? (
             <div>
               <div
-                className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
+                className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
                 Print
-              </div>
-              <div
-                className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
-                Return
               </div>
             </div>
             ) : asset?.status === 'rejected' ? (
             <div
-              className="border w-fit px-6 py-3 bg-gray-200 font-bold cursor-not-allowed border-gray-200 mt-6 rounded-lg">
-              Cancel
+              className=" font-bold cursor-not-allowed border-gray-200 rounded-lg">
+              Rejected
             </div>
-            ) : (
-            <div
-              className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] mt-6 rounded-lg">
-              Cancel
-            </div>
-            )}
+            ) : ''}
 
           </td>
 

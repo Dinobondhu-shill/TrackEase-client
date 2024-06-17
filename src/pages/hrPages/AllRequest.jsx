@@ -71,7 +71,7 @@ return (
       </thead>
       <tbody>
         {
-        reqAssets && reqAssets.map(asset=> <tr key={asset.assetId}>
+        reqAssets && reqAssets?.map(asset=> <tr key={asset._id}>
           <td>
             <div className="flex items-center gap-3">
               <div>
@@ -97,14 +97,14 @@ return (
               <div className="flex gap-3 justify-center mr-3 text-2xl ">
               
                 <div
-                onClick={()=>handleApprove(asset.assetId)}
+                onClick={()=>handleApprove(asset?.assetId)}
                  className="cursor-pointer">
                 <FaCheck className="text-green-400 "/>
                 </div> 
               
               <div className="divider lg:divider-horizontal"></div> 
              <div 
-             onClick={()=>handleDelete(asset.assetId)}
+             onClick={()=>handleDelete(asset?.assetId)}
              className="cursor-pointer"> <GiCrossMark className="text-red-400  ml-3"/></div>
 
               </div>
