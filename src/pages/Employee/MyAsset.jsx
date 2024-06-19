@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 
+
 const MyAsset = () => {
 const {user} = useContext(AuthContext)
 const email = user?.email
@@ -125,7 +126,6 @@ return (
               <div className="flex gap-4 my-3">
                 <Link to={`/print-asset-details/${asset._id}`}
                   className="border w-fit px-6  py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
-                  Print
                 </Link >
                 <div
                 onClick={()=>handleReturn(asset._id, asset?.assetId)}

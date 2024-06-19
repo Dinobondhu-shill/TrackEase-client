@@ -1,5 +1,6 @@
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
-import { useLoaderData } from "react-router-dom";
+import moment from "moment";
+
 
 // Create styles
 const styles = StyleSheet.create({
@@ -12,7 +13,6 @@ const styles = StyleSheet.create({
   header: {
    paddingTop:80,
     display: 'block',
-    padding: 10,
     textAlign: 'center',
     fontSize: 28,
     alignSelf: 'center',
@@ -38,19 +38,32 @@ const styles = StyleSheet.create({
   },
   tableRow: {
     display:'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     
   },
   tableCell: {
     fontSize: 16,
     margin: 20
-  }
+  },
+  footer: {
+    fontSize: 15,
+    color: '#000',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50, // Adjust height as needed
+    borderTopWidth: 1,
+    borderTopColor: '#000',
+    borderTopStyle: 'solid',
+    paddingTop:50,
+  },
  
 });
 
-const PrintPdf = () => {
-  const data = useLoaderData()
+const PrintPdf = ({data}) => {
+  const currentDate = moment().format('YYYY-MM-DD');
+  
   console.log(data)
   return (
     <Document>
@@ -81,6 +94,9 @@ const PrintPdf = () => {
               Approved Date: {data.approvedDate}
             </Text>
           </View>
+        </View>
+        <View style={styles.footer}>
+          <Text>Printing on: {currentDate}</Text>
         </View>
       
     </Page>

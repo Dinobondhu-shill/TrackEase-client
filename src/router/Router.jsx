@@ -13,7 +13,7 @@ import RequestForAsset from "../pages/Employee/RequestForAsset";
 import MyTeam from "../pages/Employee/MyTeam";
 import MyAsset from "../pages/Employee/MyAsset";
 import AllRequest from "../pages/hrPages/AllRequest";
-import PrintPdf from "../pages/Employee/PrintPdf";
+import PdfDownload from "../pages/Employee/PdfDownload";
 
 export const router = createBrowserRouter([
   {
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
       },
       {
         path:'/print-asset-details/:id',
-        element:<PrintPdf></PrintPdf>,
+        element:<PdfDownload></PdfDownload>,
         loader:({params})=> fetch(`http://localhost:5000/download-pdf/${params.id}`)
       }
     ]
