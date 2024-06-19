@@ -22,10 +22,10 @@ if(reqAssets.length === 0 ) return <div>
   <div className="py-20 font-bold text-center text-3xl">You don't have any asset request</div>
   </div></div>
 
-const handleApprove = async(id) =>{
+const handleApprove = async(id, assetId) =>{
   const status = 'approved'
   const approvedDate = moment().format('YYYY-MM-DD');
- const updateDoc = {status, approvedDate}
+ const updateDoc = {status, approvedDate, assetId}
   const res = await axios.patch(`http://localhost:5000/approve-asset/${id}`, updateDoc)
   console.log(res.data)
   if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
@@ -97,7 +97,7 @@ return (
               <div className="flex gap-3 justify-center mr-3 text-2xl ">
               
                 <div
-                onClick={()=>handleApprove(asset?.assetId)}
+                onClick={()=>handleApprove(asset?._id, asset.assetId)}
                  className="cursor-pointer">
                 <FaCheck className="text-green-400 "/>
                 </div> 

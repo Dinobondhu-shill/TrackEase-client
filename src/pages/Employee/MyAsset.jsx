@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../firebase/FirebaseProvider";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 
 const MyAsset = () => {
@@ -29,8 +30,18 @@ return res.data
 
 const handleCancelAsset = async(id) =>{
   const res = await axios.delete(`http://localhost:5000/delete-req/${id}`)
-  console.log(res.data)
+  alert('Asset has been canceled')
   refetch()
+}
+
+const handleReturn = async(id, assetId) =>{
+  const status = 'returned'
+  const approvedDate = ''
+  const updateDoc = {status, assetId, approvedDate}
+const res = await axios.patch(`http://localhost:5000/return-asset/${id}`, updateDoc)
+if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
+  alert('Request has been approved')
+}
 }
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
@@ -111,29 +122,33 @@ return (
               Cancel
             </div>
             ) : asset?.status === 'approved' && asset?.productType === 'returnable' ? (
-              <div className="flex gap-4">
-                <div
-                  className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
+              <div className="flex gap-4 my-3">
+                <Link to={`/print-asset-details/${asset._id}`}
+                  className="border w-fit px-6  py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
                   Print
-                </div>
+                </Link >
                 <div
+                onClick={()=>handleReturn(asset._id, asset?.assetId)}
                   className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3]  rounded-lg">
                   Return
                 </div>
               </div>
               ) : asset?.status === 'approved' ? (
             <div>
-              <div
+              <Link to={`/print-asset-details/${asset._id}`}
                 className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
                 Print
-              </div>
+              </Link >
             </div>
             ) : asset?.status === 'rejected' ? (
             <div
               className=" font-bold cursor-not-allowed border-gray-200 rounded-lg">
               Rejected
             </div>
-            ) : ''}
+            ) : <button 
+              className="border disabled w-fit  px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-not-allowed border-[#92e0e3]  rounded-lg">
+              Returend
+            </button>}
 
           </td>
 
