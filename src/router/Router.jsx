@@ -14,6 +14,8 @@ import MyTeam from "../pages/Employee/MyTeam";
 import MyAsset from "../pages/Employee/MyAsset";
 import AllRequest from "../pages/hrPages/AllRequest";
 import PdfDownload from "../pages/Employee/PdfDownload";
+import HrPrivateRoute from "./HrPrivateRoute";
+import EmployeePrivate from "./EmployeePrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -38,41 +40,41 @@ export const router = createBrowserRouter([
       },
       {
         path:'/hr/add-asset',
-        element:<AddAsset></AddAsset>
+        element:<HrPrivateRoute><AddAsset></AddAsset></HrPrivateRoute>
       },
       {
         path:'/hr/assets',
-        element:<AssetList></AssetList>
+        element:<HrPrivateRoute><AssetList></AssetList></HrPrivateRoute>
       },
       {
         path:"/hr/assets/:id",
-        element:<UpdateAsset></UpdateAsset>,
+        element:<HrPrivateRoute><UpdateAsset></UpdateAsset></HrPrivateRoute>,
         loader:({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
       },
       {
         path:"/add-employee",
-        element:<AddEmployee></AddEmployee>
+        element:<HrPrivateRoute><AddEmployee></AddEmployee></HrPrivateRoute>
       },
       {
         path:'/all-request',
-        element: <AllRequest></AllRequest>
+        element: <HrPrivateRoute><AllRequest></AllRequest></HrPrivateRoute>
       }, 
       {
         path:'/my-employee',
-        element:<MyEmployee></MyEmployee>
+        element:<HrPrivateRoute><MyEmployee></MyEmployee></HrPrivateRoute>
         
       },
       {
         path:'/employee/request-for-assets',
-        element:<RequestForAsset></RequestForAsset>,
+        element:<EmployeePrivate><RequestForAsset></RequestForAsset></EmployeePrivate>,
       },
       {
         path: '/employee/my-team',
-        element:<MyTeam></MyTeam>,
+        element:<EmployeePrivate><MyTeam></MyTeam></EmployeePrivate>,
       },
       {
         path:'/my-asset-list',
-        element:<MyAsset></MyAsset>
+        element:<EmployeePrivate><MyAsset></MyAsset></EmployeePrivate>
       },
       {
         path:'/print-asset-details/:id',
