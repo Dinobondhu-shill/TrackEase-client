@@ -8,6 +8,7 @@ import useRoll from "../hooks/useRoll";
 const Navbar = () => {
   const {user, logOut} = useContext(AuthContext)
 const [role] = useRoll();
+console.log(role)
 
 
   const Navbar = <>
@@ -208,7 +209,7 @@ const [role] = useRoll();
             }
           </ul>
         </div>
-        <Link to={'/'}> <img src={logo} className="w-36" /> </Link>
+        <Link to={'/'}> <img src={role[1] ? role[1]: logo} className="w-36" /> </Link>
       </div>
       <div className="navbar-end hidden text-md font-semibold lg:flex">
         <ul className="menu menu-horizontal px-1 text-md flex gap-4">

@@ -3,6 +3,7 @@ import useRoll from "../../hooks/useRoll";
 import loader from '../../../public/loader.json'
 import HomeWithoutAccount from "./HomeWithoutAccount";
 import HrHome from "./HrHomePage/HrHome";
+import EmployeeHome from "./EmployeeHome/EmployeeHome";
 
 const Home = () => {
   const [role, isHrLoading] = useRoll()
@@ -12,6 +13,9 @@ const Home = () => {
    }
    if(role[0] ==='hr'){
     return <HrHome></HrHome>
+   }
+   else if(role[0]=== 'employee'){
+    return <EmployeeHome></EmployeeHome>
    }
   return (
     <HomeWithoutAccount></HomeWithoutAccount>

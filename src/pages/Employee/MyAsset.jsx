@@ -45,6 +45,13 @@ if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
 }
 }
 
+if(myAssets.length === 0 ) return <div>
+<div className="pt-24 px-12">
+<h2 className="text-3xl font-semibold text-center underline">Your Requested Assets</h2>
+
+<div className="py-20 font-bold text-center text-3xl">You Haven't any requested Asset</div>
+</div></div>
+
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
 return (
