@@ -7,7 +7,6 @@ const EmployeeCard = ({person,totalEmployee, teamMates, refetch}) => {
   console.log(role)
   const company = role[2]
   const imageUrl2 = role[1]
-  const packages = role[3]
   const addingEmployee = {company, imageUrl2}
   console.log(addingEmployee)
    

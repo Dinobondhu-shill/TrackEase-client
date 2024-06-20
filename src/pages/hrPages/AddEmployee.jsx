@@ -46,7 +46,7 @@ const AddEmployee = () => {
   if (isTeamLoading || isFreeEmployeeLoading) {
     return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info"></span>;
   }
-  
+  refetch()
 
   return (
     <div className="pt-24 px-20 flex flex-col">

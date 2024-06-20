@@ -3,7 +3,7 @@ import { FaCheck } from "react-icons/fa";
 
 const PackageCard1 = () => {
   return (
-    <div className="border py-10 px-4 rounded-2xl text-center">
+    <div className="border py-10 px-4 shadow-md rounded-2xl text-center">
       <h2 className="font-semibold text-xl">Basic</h2>
       <h3>Maximum 5 employees</h3>
       <h5 className="font-medium text-xl mb-4">$<span>5</span></h5>
