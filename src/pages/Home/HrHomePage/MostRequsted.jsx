@@ -41,7 +41,7 @@ const MostRequested = () => {
             </thead>
             <tbody>
               {topItems.map((item) => (
-                <tr key={item._id}>
+                <tr className='flex justify-between' key={item._id}>
                   <td className='font-bold'>{item._id}</td>
                   <td>{item.count}</td>
                 </tr>

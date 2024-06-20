@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 const MyPendingReq = () => {
   const {user} = useContext(AuthContext)
 const email = user?.email
-  const {data:pendingAsset={}, isPending, refetch} = useQuery({
+  const {data:pendingAsset=[], isPending, refetch} = useQuery({
     queryKey:['pending asset'],
     
     queryFn: async()=>{
@@ -22,7 +22,7 @@ const email = user?.email
       
       refetch()
     }
-
+    if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
   return (
     <div className="mt-8">
       <h2 className="text-3xl font-semibold">My Pending Request :</h2>

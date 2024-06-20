@@ -1,17 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import moment from "moment";
+import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
 
 const AllRequest = () => {
-
+  const [search, setSearch] = useState('')
 
 const {data:reqAssets={}, isPending, refetch} = useQuery({
-queryKey:['assets'],
+queryKey:['assets', search],
 
 queryFn: async()=>{
-const res = await axios.get('http://localhost:5000/requested-assets')
+const res = await axios.get(`http://localhost:5000/requested-assets?search=${search}`)
 return res.data
 }
 });
@@ -43,14 +44,22 @@ const handleDelete = async(id) =>{
 }
 refetch()
 }
-
+const handleSerch = (e) =>{
+  e.preventDefault()
+  const searchText = e.target.search.value
+setSearch(searchText)
+}
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
 return (
 <div className="pt-24 px-12">
   <h2 className="text-3xl font-semibold text-center underline">Request For Assets</h2>
-
+  <form onSubmit={handleSerch} 
+className="input input-bordered mt-5 flex items-center gap-2 w-fit">
+  <input type="text" name="search" className="grow" placeholder="Search by email or name" />
+  <button type="submit"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-5 h-5 opacity-70 z-10"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg></button>
+</form>
   {/* assets data mapping */}
   <div className="overflow-x-auto pt-24">
     <table className="table">

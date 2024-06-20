@@ -8,15 +8,17 @@ import Swal from "sweetalert2";
 
 const AssetList = () => {
   const [filter, setFilter] = useState('')
-  const [filter2, setFilter2] = useState([])
-  const [sort, setSort] = useState([])
-  const [search, setSearch] = useState([])
+  const [filter2, setFilter2] = useState('')
+  const [sort, setSort] = useState('')
+  const [search, setSearch] = useState('')
 
   const {data:assets={}, isPending, refetch} = useQuery({
-    queryKey:['assets'],
+    queryKey:['assets', filter, filter2, search, sort],
     
     queryFn: async()=>{
-      const res = await axios.get(`http://localhost:5000/assets`)
+      const res = await axios.get(`http://localhost:5000/assets`, {
+        params: { filter, filter2, search, sort },
+      });
       return res.data
     }
     });
@@ -60,17 +62,16 @@ const AssetList = () => {
         {/* search bar and filter section */}
      <div className="flex justify-between items-center">
      <div className="dropdown dropdown-hover">
-  <select
- 
-    onChange={e => setFilter(e.target.value)}
-    name='status'
-    id="status"
-    value={filter}
-    className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
-      <option disabled value="">Stock Status</option>
-    <option value="available">Available</option>
-    <option value="stock-out">Out Of Stock</option>
-  </select>
+     <select
+              onChange={e => setFilter(e.target.value)}
+              name='status'
+              id="status"
+              value={filter}
+              className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
+              <option disabled value="">Stock Status</option>
+              <option value="1">Available</option>
+              <option value="0">Out Of Stock</option>
+            </select>
 </div>
 <div className="dropdown dropdown-hover">
   <select
@@ -92,8 +93,8 @@ const AssetList = () => {
     value={sort}
     className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
       <option disabled value="">Sort By</option>
-    <option value="returnable">High to low</option>
-    <option value="non-returnable">Low to high</option>
+      <option value="quantity-desc">High to low</option>
+      <option value="quantity-asc">Low to high</option>
   </select>
 </div>
 <form onSubmit={handleSerch} 
