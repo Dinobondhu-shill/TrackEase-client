@@ -10,7 +10,7 @@ const MyAsset = () => {
 const {user} = useContext(AuthContext)
 const email = user?.email
 const [filter2, setFilter2] = useState([])
-const [sort, setSort] = useState([])
+const [filter, setFilter] = useState([])
 const [search, setSearch] = useState([])
 
 
@@ -21,10 +21,14 @@ setSearch(searchText)
 }
 
 const {data:myAssets={}, isPending, refetch} = useQuery({
-queryKey:['requested assets'],
+queryKey:['requested assets', filter, filter2, search],
 
 queryFn: async()=>{
-const res = await axios.get(`http://localhost:5000/my-asset/${email}`)
+const res = await axios.get(`http://localhost:5000/my-asset/${email}`,
+  {
+    params: { filter, filter2, search},
+  }
+)
 return res.data
 }
 });
@@ -72,14 +76,14 @@ return (
       </select>
     </div>
     <div className="dropdown dropdown-hover">
-      <select onChange={e=> setSort(e.target.value)}
+      <select onChange={e=> setFilter(e.target.value)}
         name='sort'
         id="sort"
-        value={sort}
+        value={filter}
         className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
-        <option disabled value="">Sort By</option>
-        <option value="returnable">Pending</option>
-        <option value="non-returnable">Approved</option>
+        <option disabled value="">Status</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
       </select>
     </div>
     <form onSubmit={handleSerch} className="input input-bordered mt-5 flex items-center gap-2">
