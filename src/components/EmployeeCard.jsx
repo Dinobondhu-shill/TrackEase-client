@@ -2,7 +2,7 @@ import axios from "axios";
 import useRoll from "../hooks/useRoll";
 import Swal from "sweetalert2";
 
-const EmployeeCard = ({person, refetch}) => {
+const EmployeeCard = ({person,totalEmployee, teamMates, refetch}) => {
   const [role] = useRoll()
   console.log(role)
   const company = role[2]
@@ -12,6 +12,9 @@ const EmployeeCard = ({person, refetch}) => {
   console.log(addingEmployee)
    
   const handleAddToTeam =async(id)=>{
+    if(teamMates.length >= totalEmployee){
+      return alert("You can't add employees, please increase the package")
+    }
     const res = await axios.put(`http://localhost:5000/add-employee/${id}`, addingEmployee);
     if(res.data.modifiedCount>0){
       Swal.fire({

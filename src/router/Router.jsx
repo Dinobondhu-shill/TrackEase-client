@@ -16,6 +16,7 @@ import AllRequest from "../pages/hrPages/AllRequest";
 import PdfDownload from "../pages/Employee/PdfDownload";
 import HrPrivateRoute from "./HrPrivateRoute";
 import EmployeePrivate from "./EmployeePrivateRoute";
+import Packages from "../pages/Package/Packages";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
         path:'/print-asset-details/:id',
         element:<PdfDownload></PdfDownload>,
         loader:({params})=> fetch(`http://localhost:5000/download-pdf/${params.id}`)
+      },
+      {
+        path:'/packages',
+        element:<HrPrivateRoute><Packages></Packages></HrPrivateRoute>
       }
     ]
   },
