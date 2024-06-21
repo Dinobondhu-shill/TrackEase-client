@@ -23,8 +23,8 @@ const MyEmployee = () => {
     if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
   return (
-    <div className="py-24 px-24">
-       <h2 className="text-3xl font-semibold text-center underline">Meet Your Team</h2>
+    <div className="py-24 md:px-24">
+       <h2 className="md:text-3xl text-xl font-semibold text-center underline">Meet Your Team</h2>
        <div>
        <div className="overflow-x-auto">
   <table className="table mt-8">
@@ -50,7 +50,7 @@ const MyEmployee = () => {
             }
           </td>
           <th>
-            <button className=" border py-2 px-1 rounded-md hover:bg-red-400">Remove From Team</button>
+            <button className=" border py-2 px-1 rounded-md hover:bg-red-400">Remove </button>
           </th>
         </tr>)
       }

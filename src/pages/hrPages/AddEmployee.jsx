@@ -49,8 +49,8 @@ const AddEmployee = () => {
   refetch()
 
   return (
-    <div className="pt-24 px-20 flex flex-col">
-      <div className="flex justify-between mb-16">
+    <div className="pt-24 px-2 md:px-20 flex flex-col">
+      <div className="flex justify-between flex-col md:flex-row mb-5 md:mb-16">
       <h2 className="text-xl font-semibold ">Your Total Employee: <span className="text-sky-400">{teamMates.length}</span></h2>
       <h2 className="text-xl font-semibold ">Your Current Package: <span className="text-sky-400">{packages}</span></h2>
       <h2 className="text-xl font-semibold ">You Can Add: <span className="text-sky-400">{totalEmployee - teamMates.length}</span></h2>

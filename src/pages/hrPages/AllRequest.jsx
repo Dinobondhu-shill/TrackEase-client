@@ -55,8 +55,8 @@ setSearch(searchText)
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
 return (
-<div className="pt-24 px-12">
-  <h2 className="text-3xl font-semibold text-center underline">Request For Assets</h2>
+<div className="pt-24 md:px-12 px-2">
+  <h2 className="md:text-3xl text-xl font-semibold text-center underline">Request For Assets</h2>
   <form onSubmit={handleSerch} 
 className="input input-bordered mt-5 flex items-center gap-2 w-fit">
   <input type="text" name="search" className="grow" placeholder="Search by email or name" />

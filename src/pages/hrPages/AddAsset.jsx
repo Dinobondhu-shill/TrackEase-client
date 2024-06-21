@@ -45,12 +45,12 @@ const AddAsset = () => {
   }
 
   return (
-    <div className="pt-24 px-24 w-4/6 mx-auto">
+    <div className="pt-24 md:px-24 px-5 md:w-4/6 mx-auto">
       <h2 className="text-3xl font-bold text-center underline">Update Asset</h2>
       <div className="my-10">
         <form onSubmit={handleAddAsset}>
           {/* full name field */}
-      <div className="flex">
+      <div className="flex flex-col md:flex-row">
       <label className="form-control w-full">
         <div className="label">
           <span className="label-text">Enter Product Name*</span>
