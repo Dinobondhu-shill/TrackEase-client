@@ -27,10 +27,10 @@ const MyEmployee = () => {
        <h2 className="text-3xl font-semibold text-center underline">Meet Your Team</h2>
        <div>
        <div className="overflow-x-auto">
-  <table className="table">
+  <table className="table mt-8">
     <tbody>
       {
-        members && members.map((member, index)=>  <tr key={member._id} className="flex justify-around items-center">
+        members && members.map((member, index)=>  <tr key={member._id} className="flex flex-shrink justify-evenly">
           <td>{index+1}</td>
           <td>
             <div className="flex items-center gap-3">

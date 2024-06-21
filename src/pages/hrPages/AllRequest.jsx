@@ -4,6 +4,8 @@ import moment from "moment";
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const AllRequest = () => {
   const [search, setSearch] = useState('')
@@ -30,7 +32,7 @@ const handleApprove = async(id, assetId) =>{
   const res = await axios.patch(`http://localhost:5000/approve-asset/${id}`, updateDoc)
   console.log(res.data)
   if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
-    alert('Request has been approved')
+    toast.success('Request has been approved')
   }
   refetch()
 }
@@ -40,7 +42,7 @@ const handleDelete = async(id) =>{
   const res = await axios.patch(`http://localhost:5000/reject-asset/${id}`, {status})
   console.log(res.data)
   if(res?.data.modifiedCount > 0){
-    alert('Request has been rejected')
+    toast.warning('Request has been rejected')
 }
 refetch()
 }
@@ -127,6 +129,7 @@ className="input input-bordered mt-5 flex items-center gap-2 w-fit">
 
     </table>
   </div>
+  <ToastContainer />
 </div>
 );
 };

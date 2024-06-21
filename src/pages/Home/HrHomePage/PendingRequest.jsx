@@ -20,10 +20,10 @@ return res.data
 }
 });
 if(reqAssets.length === 0 ) return <div>
-  <div className="pt-24 px-12">
-    <h2 className="text-3xl font-semibold text-center underline">Request For Assets</h2>
+  <div className="pt-24">
+    <h2 className="text-3xl font-semibold">Your Pending Request :</h2>
 
-    <div className="py-20 font-bold text-center text-3xl">You don't have any asset request</div>
+    <div className="py-10 font-bold text-3xl">You don't have any asset request</div>
   </div>
 </div>
 

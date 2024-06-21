@@ -15,13 +15,13 @@ const AddEmployee = () => {
   useEffect(() => {
     if (packages === 'premium') {
       setTotalEmployee(20);
-      setPack('20 members for $15')
+      setPack('premium')
     } else if (packages === 'basic') {
       setTotalEmployee(5);
-      setPack("5 members for $5")
+      setPack("basic")
     } else {
       setTotalEmployee(10);
-      setPack('10 members for $8')
+      setPack('standard')
     }
   }, [packages]);
 
@@ -52,7 +52,7 @@ const AddEmployee = () => {
     <div className="pt-24 px-20 flex flex-col">
       <div className="flex justify-between mb-16">
       <h2 className="text-xl font-semibold ">Your Total Employee: <span className="text-sky-400">{teamMates.length}</span></h2>
-      <h2 className="text-xl font-semibold ">Your Current Package: <span className="">{packages}</span></h2>
+      <h2 className="text-xl font-semibold ">Your Current Package: <span className="text-sky-400">{packages}</span></h2>
       <h2 className="text-xl font-semibold ">You Can Add: <span className="text-sky-400">{totalEmployee - teamMates.length}</span></h2>
       </div>
       <Link to={'/packages'} className="py-2 px-4 border rounded-md text-slate-900 font-semibold w-fit my-5 hover:bg-sky-400">Increase Limit</Link>

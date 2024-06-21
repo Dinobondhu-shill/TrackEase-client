@@ -130,24 +130,24 @@ return (
             { asset?.status === 'pending' ? (
             <div
             onClick={()=>handleCancelAsset(asset?._id)}
-              className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
+              className="border w-fit px-6 py-2 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
               Cancel
             </div>
             ) : asset?.status === 'approved' && asset?.productType === 'returnable' ? (
               <div className="flex gap-4 my-3">
                 <Link to={`/print-asset-details/${asset._id}`}
-                  className="border w-fit px-6  py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
+                  className="border w-fit px-6  py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg"> Print
                 </Link >
                 <div
                 onClick={()=>handleReturn(asset._id, asset?.assetId)}
-                  className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3]  rounded-lg">
+                  className="border w-fit px-6 py-2 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
                   Return
                 </div>
               </div>
               ) : asset?.status === 'approved' ? (
             <div>
               <Link to={`/print-asset-details/${asset._id}`}
-                className="border w-fit px-6 py-3 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
+                className="border w-fit px-6 py-2 hover:bg-[#92e0e3] font-bold cursor-pointer border-[#92e0e3] rounded-lg">
                 Print
               </Link >
             </div>
