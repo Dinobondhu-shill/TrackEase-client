@@ -43,7 +43,7 @@ const PieChartComponent = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Returnable vs Non-Returnable Items:</h2>
+      <h2 className="md:text-3xl text-xl font-semibold">Returnable vs Non-Returnable Items:</h2>
       <div style={{ width: '100%', height: 400 }}>
         <ResponsiveContainer>
           <PieChart>

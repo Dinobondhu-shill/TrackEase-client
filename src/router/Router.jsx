@@ -17,6 +17,7 @@ import PdfDownload from "../pages/Employee/PdfDownload";
 import HrPrivateRoute from "./HrPrivateRoute";
 import EmployeePrivate from "./EmployeePrivateRoute";
 import Packages from "../pages/Package/Packages";
+import SignUp from "../pages/SignIn/SignUp";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path:'/join-as-hr',
-        element:<JoinHR></JoinHR>
+        element:<SignUp></SignUp>
       },
       {
         path:'/login',

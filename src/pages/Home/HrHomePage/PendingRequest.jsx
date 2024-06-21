@@ -21,9 +21,9 @@ return res.data
 });
 if(reqAssets.length === 0 ) return <div>
   <div className="pt-24">
-    <h2 className="text-3xl font-semibold">Your Pending Request :</h2>
+    <h2 className="md:text-3xl text-xl font-semibold">Your Pending Request :</h2>
 
-    <div className="py-10 font-bold text-3xl">You don't have any asset request</div>
+    <div className="md:py-10 py-3 font-bold md:text-3xl text-x">You don't have any asset request</div>
   </div>
 </div>
 
@@ -53,7 +53,7 @@ refetch()
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 return (
 <div>
-  <h2 className="text-3xl font-semibold">Your Pending Request :</h2>
+  <h2 className="md:text-3xl text-x font-semibold">Your Pending Request :</h2>
 
   <div className="my-4">
     <div className="overflow-x-auto pt-4">
