@@ -25,7 +25,7 @@ const email = user?.email
     if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
   return (
     <div className="mt-8">
-      <h2 className="text-3xl font-semibold">My Pending Request :</h2>
+      <h2 className="md:text-3xl text-xl font-semibold">My Pending Request :</h2>
       <div className="mt-8">
       <table className="table">
       {/* head */}

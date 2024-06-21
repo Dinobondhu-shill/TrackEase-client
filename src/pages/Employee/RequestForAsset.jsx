@@ -74,17 +74,17 @@ const RequestForAsset = () => {
   setSearch(searchText)
   }
   return (
-    <div className="py-24 px-24 flex flex-col">
+    <div className="py-24 md:px-24 flex flex-col">
       <h2 className="text-3xl font-semibold text-center underline">Request for asset to HR</h2>
         {/* search bar and filter section */}
-     <div className="flex justify-between items-center">
+     <div className="flex flex-col md:flex-row justify-between items-center">
      <div className="dropdown dropdown-hover">
      <select
               onChange={e => setFilter(e.target.value)}
               name='status'
               id="status"
               value={filter}
-              className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
+              className="md:absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
               <option disabled value="">Stock Status</option>
               <option value="1">Available</option>
               <option value="0">Out Of Stock</option>
@@ -96,7 +96,7 @@ const RequestForAsset = () => {
     name='type'
     id="type"
     value={filter2}
-    className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
+    className="md:absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
       <option disabled value="">Product Type</option>
     <option value="returnable">Returnable</option>
     <option value="non-returnable">Non-returnable</option>

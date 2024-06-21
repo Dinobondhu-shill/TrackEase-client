@@ -5,9 +5,12 @@ import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import useRoll from "../../../hooks/useRoll";
 
 
 const PendingRequest = () => {
+  const [role] = useRoll()
+  const company = role[2]
 
 const [items, setItems] = useState(5)
 
@@ -15,7 +18,7 @@ const {data:reqAssets={}, isPending, refetch} = useQuery({
 queryKey:['assets'],
 
 queryFn: async()=>{
-const res = await axios.get('http://localhost:5000/requested-assets')
+const res = await axios.get(`http://localhost:5000/requested-assets/${company}`)
 return res.data
 }
 });

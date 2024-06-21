@@ -20,16 +20,16 @@ const MyTeam = () => {
     }
     });
     if(members.length === 0 ) return <div>
-  <div className="pt-24 px-12">
-  <h2 className="text-3xl font-semibold text-center underline">Meet Your Team</h2>
+  <div className="pt-24 md:px-12">
+  <h2 className="md:text-3xl text-xl font-semibold text-center underline">Meet Your Team</h2>
 
-  <div className="py-20 font-bold text-center text-3xl">You don't have any team. Please contact with your Hr</div>
+  <div className="py-20 font-bold text-center md:text-3xl text-xl">You don't have any team. Please contact with your Hr</div>
   </div></div>
 
     if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
   return (
-    <div className="py-24 px-24">
-       <h2 className="text-3xl font-semibold text-center underline">Meet Your Team</h2>
+    <div className="py-24 md:px-24">
+       <h2 className="md:text-3xl text-xl font-semibold text-center underline">Meet Your Team</h2>
        <div>
        <div className="overflow-x-auto pt-10 " >
   <table className="table">

@@ -51,25 +51,25 @@ if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
 
 if(myAssets.length === 0 ) return <div>
 <div className="pt-24 px-12">
-<h2 className="text-3xl font-semibold text-center underline">Your Requested Assets</h2>
+<h2 className="md:text-3xl text-xl font-semibold text-center underline">Your Requested Assets</h2>
 
-<div className="py-20 font-bold text-center text-3xl">You Haven't any requested Asset</div>
+<div className="py-20 font-bold text-center md:text-3xl text-xl">You Haven't any requested Asset</div>
 </div></div>
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 
 return (
-<div className="pt-24 px-20">
-  <h2 className="text-3xl font-semibold text-center underline">Your Requested Assets</h2>
+<div className="pt-24 px-2 md:px-20">
+  <h2 className="md:text-3xl text-xl font-semibold text-center underline">Your Requested Assets</h2>
   {/* search bar and filter section */}
-  <div className="flex justify-between items-center">
+  <div className="flex flex-col md:flex-row justify-between items-center">
 
     <div className="dropdown dropdown-hover">
       <select onChange={e=> setFilter2(e.target.value)}
         name='type'
         id="type"
         value={filter2}
-        className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
+        className="md:absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
         <option disabled value="">Product Type</option>
         <option value="returnable">Returnable</option>
         <option value="non-returnable">Non-returnable</option>
@@ -80,7 +80,7 @@ return (
         name='sort'
         id="sort"
         value={filter}
-        className="absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
+        className="md:absolute z-10 inset-x-0 mt-1 bg-base-100 border rounded-md w-52">
         <option disabled value="">Status</option>
         <option value="pending">Pending</option>
         <option value="approved">Approved</option>

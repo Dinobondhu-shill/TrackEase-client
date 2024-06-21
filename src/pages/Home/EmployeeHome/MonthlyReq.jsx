@@ -27,7 +27,7 @@ const MonthlyRequests = () => {
 
   return (
     <div className="mt-8">
-      <h2 className="text-3xl font-semibold">My Monthly Requests</h2>
+      <h2 className="md:text-3xl text-xl font-semibold">My Monthly Requests</h2>
       <div className="my-4">
         <div className="overflow-x-auto pt-4">
           <table className="table">

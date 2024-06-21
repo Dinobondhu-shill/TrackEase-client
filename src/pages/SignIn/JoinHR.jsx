@@ -67,10 +67,13 @@ const JoinHR = () => {
         setIsProcessing(false);
         return;
       }
-
+    
+      
+      
+    
       // Create payment intent on server
       const paymentIntentResponse = await axios.post("http://localhost:5000/payment-intent", {
-        amount: getPackageAmount(packages)
+        price : getPackageAmount(packages)
       });
       const clientSecret = paymentIntentResponse.data.clientSecret;
 
@@ -129,6 +132,7 @@ const JoinHR = () => {
         return 0;
     }
   };
+;
 
   return (
     <div className="pt-16 flex flex-row-reverse gap-5 lg:px-20">

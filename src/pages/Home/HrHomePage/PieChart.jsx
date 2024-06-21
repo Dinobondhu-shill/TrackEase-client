@@ -2,16 +2,21 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import useRoll from '../../../hooks/useRoll';
 
-const fetchStatistics = async () => {
-  const { data } = await axios.get('http://localhost:5000/items-statistics');
+const fetchStatistics = async (company) => {
+
+
+  const { data } = await axios.get(`http://localhost:5000/items-statistics/${company}`);
   return data;
 };
 
 const PieChartComponent = () => {
+  const [role] = useRoll()
+  const company = role[2]
   const { data: count = {}, error, isLoading } = useQuery({
     queryKey: ['pie-data'],
-    queryFn: fetchStatistics,
+    queryFn:()=>fetchStatistics(company),
   });
 
   if (isLoading) {

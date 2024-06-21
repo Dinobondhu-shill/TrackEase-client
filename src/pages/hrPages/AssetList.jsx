@@ -5,18 +5,23 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useRoll from "../../hooks/useRoll";
 
 const AssetList = () => {
   const [filter, setFilter] = useState('')
   const [filter2, setFilter2] = useState('')
   const [sort, setSort] = useState('')
   const [search, setSearch] = useState('')
+  const [role] = useRoll()
+  console.log(role)
+  const company = role[2]
+
 
   const {data:assets={}, isPending, refetch} = useQuery({
     queryKey:['assets', filter, filter2, search, sort],
     
     queryFn: async()=>{
-      const res = await axios.get(`http://localhost:5000/assets`, {
+      const res = await axios.get(`http://localhost:5000/assets/${company}`, {
         params: { filter, filter2, search, sort },
       });
       return res.data

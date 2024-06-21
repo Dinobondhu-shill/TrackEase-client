@@ -51,9 +51,9 @@ const AddEmployee = () => {
   return (
     <div className="pt-24 px-2 md:px-20 flex flex-col">
       <div className="flex justify-between flex-col md:flex-row mb-5 md:mb-16">
-      <h2 className="text-xl font-semibold ">Your Total Employee: <span className="text-sky-400">{teamMates.length}</span></h2>
+      <h2 className="text-xl font-semibold ">Your Total Employee: <span className="text-sky-400">{teamMates.length -1}</span></h2>
       <h2 className="text-xl font-semibold ">Your Current Package: <span className="text-sky-400">{packages}</span></h2>
-      <h2 className="text-xl font-semibold ">You Can Add: <span className="text-sky-400">{totalEmployee - teamMates.length}</span></h2>
+      <h2 className="text-xl font-semibold ">You Can Add: <span className="text-sky-400">{totalEmployee - teamMates.length +1}</span></h2>
       </div>
       <Link to={'/packages'} className="py-2 px-4 border rounded-md text-slate-900 font-semibold w-fit my-5 hover:bg-sky-400">Increase Limit</Link>
       <h2 className="text-2xl font-semibold  underline">Collaborate With New Employee</h2>

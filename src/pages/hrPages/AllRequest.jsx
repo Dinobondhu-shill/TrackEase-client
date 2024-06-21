@@ -6,15 +6,18 @@ import { FaCheck } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import useRoll from "../../hooks/useRoll";
 
 const AllRequest = () => {
   const [search, setSearch] = useState('')
+  const [role] = useRoll()
+  const company = role[2]
 
 const {data:reqAssets={}, isPending, refetch} = useQuery({
 queryKey:['assets', search],
 
 queryFn: async()=>{
-const res = await axios.get(`http://localhost:5000/requested-assets?search=${search}`)
+const res = await axios.get(`http://localhost:5000/requested-assets/${company}?search=${search}`)
 return res.data
 }
 });
