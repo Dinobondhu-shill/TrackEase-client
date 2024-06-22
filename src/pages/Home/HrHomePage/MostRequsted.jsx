@@ -4,7 +4,7 @@ import axios from 'axios';
 import useRoll from '../../../hooks/useRoll';
 
 const fetchTopItems = async (company) => {
-  const { data } = await axios.get(`http://localhost:5000/most-requested/${company}`);
+  const { data } = await axios.get(`https://track-ease-server.vercel.app/most-requested/${company}`);
   return data;
 };
 

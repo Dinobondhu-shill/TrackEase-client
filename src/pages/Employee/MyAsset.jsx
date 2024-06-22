@@ -25,7 +25,7 @@ const {data:myAssets={}, isPending, refetch} = useQuery({
 queryKey:['requested assets', filter, filter2, search],
 
 queryFn: async()=>{
-const res = await axios.get(`http://localhost:5000/my-asset/${email}`,
+const res = await axios.get(`https://track-ease-server.vercel.app/my-asset/${email}`,
   {
     params: { filter, filter2, search},
   }
@@ -35,7 +35,7 @@ return res.data
 });
 
 const handleCancelAsset = async(id) =>{
-  const res = await axios.delete(`http://localhost:5000/delete-req/${id}`)
+  const res = await axios.delete(`https://track-ease-server.vercel.app/delete-req/${id}`)
   toast('Asset has been canceled')
   refetch()
 }
@@ -44,7 +44,7 @@ const handleReturn = async(id, assetId) =>{
   const status = 'returned'
   const approvedDate = ''
   const updateDoc = {status, assetId, approvedDate}
-const res = await axios.patch(`http://localhost:5000/return-asset/${id}`, updateDoc)
+const res = await axios.patch(`https://track-ease-server.vercel.app/return-asset/${id}`, updateDoc)
 if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
   toast('Request has been approved')
 }

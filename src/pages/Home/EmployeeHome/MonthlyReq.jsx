@@ -4,7 +4,7 @@ import axios from 'axios';
 import { AuthContext } from '../../../firebase/FirebaseProvider';
 
 const fetchMonthlyRequests = async (email) => {
-  const { data } = await axios.get(`http://localhost:5000/monthly-requests/${email}`);
+  const { data } = await axios.get(`https://track-ease-server.vercel.app/monthly-requests/${email}`);
   return data;
 };
 

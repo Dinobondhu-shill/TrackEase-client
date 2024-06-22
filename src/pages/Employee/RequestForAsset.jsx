@@ -23,7 +23,7 @@ const RequestForAsset = () => {
     queryKey: [company, 'assets', filter, filter2, search],
     queryFn: async () => {
       const encodedCompany = encodeURIComponent(company);
-      const res = await axios.get(`http://localhost:5000/asset/employee/${encodedCompany}`, {
+      const res = await axios.get(`https://track-ease-server.vercel.app/asset/employee/${encodedCompany}`, {
         params: { filter, filter2, search},
       });
       return res.data;
@@ -42,7 +42,7 @@ const RequestForAsset = () => {
     const requestAsset = { note, requestedDate, status, requesterEmail, requesterName, product, productType , company, assetId:id};
 
     try {
-      const res = await axios.post(`http://localhost:5000/request-for-asset`, requestAsset);
+      const res = await axios.post(`https://track-ease-server.vercel.app/request-for-asset`, requestAsset);
       if (res.data.insertedId) {
         Swal.fire({
           icon: "success",

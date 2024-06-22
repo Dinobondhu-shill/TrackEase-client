@@ -43,7 +43,7 @@ console.log(employee)
     createUser(email, password)
     .then(async(result)=>{
        // send users data after login
-       const response = await axios.post('http://localhost:5000/users', employee)
+       const response = await axios.post('https://track-ease-server.vercel.app/users', employee)
        console.log(response.data)
 
       //  update users profile
@@ -70,7 +70,7 @@ console.log(employee)
       const company = null
       const employee ={email, name, image, role, company}
        // send users data after login
-       const response = await axios.post('http://localhost:5000/users', employee)
+       const response = await axios.post('https://track-ease-server.vercel.app/users', employee)
 
       navigate(location?.state || '/')
       Swal.fire("You are now logged in");

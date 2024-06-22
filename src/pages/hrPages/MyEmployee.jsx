@@ -15,7 +15,7 @@ const MyEmployee = () => {
     
     queryFn: async()=>{
       const encodedCompany = encodeURIComponent(company);
-      const res = await axios.get(`http://localhost:5000/users/team/${encodedCompany}`)
+      const res = await axios.get(`https://track-ease-server.vercel.app/users/team/${encodedCompany}`)
       return res.data
     }
     });

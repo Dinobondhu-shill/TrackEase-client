@@ -20,7 +20,7 @@ const asset = useLoaderData()
     const quantity = parseInt(form.quantity.value)
     const updatedAsset = {product, productType, quantity}
 
-    const res = await axios.put(`http://localhost:5000/update-assets/${asset?._id}`, updatedAsset);
+    const res = await axios.put(`https://track-ease-server.vercel.app/update-assets/${asset?._id}`, updatedAsset);
     console.log(res.data);
     if(res.data.modifiedCount>0){
       Swal.fire({

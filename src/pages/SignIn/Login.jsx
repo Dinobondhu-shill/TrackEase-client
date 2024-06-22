@@ -17,7 +17,6 @@ import axios from "axios";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 const [login, setLogin] = useState('')
-const [loginErr, setLoginErr] = useState('')
 const {signIn, googleLogin,githubLogin, facebookLogin } = useContext(AuthContext)
 const navigate = useNavigate();
 const location = useLocation();
@@ -34,12 +33,8 @@ const location = useLocation();
     .then(res=>{
       Swal("You are now logged in")
       setLogin('login successful')
-      navigate(location?.state || '/')
+      navigate('/')
       
-    })
-    .catch(error=>{
-      console.log(error)
-      setLoginErr('Email or Password is not correct')
     })
   }
   const handleSocailLogin = socialProvider =>{
@@ -52,10 +47,11 @@ const location = useLocation();
       const company = null
       const employee ={email, name, image, role, company}
        // send users data after login
-       const response = await axios.post('http://localhost:5000/users', employee)
+       const response = await axios.post('https://track-ease-server.vercel.app/users', employee)
+       Swal.fire("You are now logged in");
 
-      navigate(location?.state || '/')
-      Swal.fire("You are now logged in");
+       navigate('/')
+     
 
     })
   }
@@ -97,9 +93,7 @@ className=" flex flex-col w-full md:w-1/2 gap-3">
 {
   login && <span className="text-bold text-green-600 mt-5 w-full">{login}</span>
 }
-{
-  loginErr && <span className="text-bold text-red-600 mt-5">{loginErr}</span>
-}
+
 <div className="md:w-2/4">
 <p data-aos="fade-left" className="mt-4 text-[16px] pb-4">Sign up as <Link to={'/join-as-employee'} className="underline  text-blue-400">Employee</Link> or <Link to={'/join-as-hr'} className="underline  text-blue-400">HR</Link> </p> <hr />
 <h2 data-aos="fade-right" className="font-bold mt-4">Or Continue With:</h2>

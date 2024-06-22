@@ -31,7 +31,7 @@ const Packages = () => {
 
   useEffect(() => {
     if (price !== null) {
-      axios.post('http://localhost:5000/payment-intent', { price })
+      axios.post('https://track-ease-server.vercel.app/payment-intent', { price })
         .then(res => setClientSecret(res.data.clientSecret))
         .catch(error => toast.error('Error fetching client secret'));
     }

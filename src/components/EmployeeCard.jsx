@@ -5,17 +5,15 @@ import { ToastContainer, toast } from "react-toastify";
 
 const EmployeeCard = ({person,totalEmployee, teamMates, refetch}) => {
   const [role] = useRoll()
-  console.log(role)
   const company = role[2]
   const imageUrl2 = role[1]
   const addingEmployee = {company, imageUrl2}
-  console.log(addingEmployee)
    
   const handleAddToTeam =async(id)=>{
     if(teamMates.length >= totalEmployee){
       return toast("You can't add employees, please increase the package")
     }
-    const res = await axios.put(`http://localhost:5000/add-employee/${id}`, addingEmployee);
+    const res = await axios.put(`https://track-ease-server.vercel.app/add-employee/${id}`, addingEmployee);
     if(res.data.modifiedCount>0){
       Swal.fire({
         position: "top-center",

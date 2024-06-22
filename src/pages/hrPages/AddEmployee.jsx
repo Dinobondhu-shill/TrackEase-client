@@ -29,7 +29,7 @@ const AddEmployee = () => {
     queryKey: [company, 'assets'],
     queryFn: async () => {
       const encodedCompany = encodeURIComponent(company);
-      const res = await axios.get(`http://localhost:5000/users/team/${encodedCompany}`);
+      const res = await axios.get(`https://track-ease-server.vercel.app/users/team/${encodedCompany}`);
       return res.data;
     },
     enabled: !!company, // Ensure this query runs only when 'company' is defined
@@ -38,7 +38,7 @@ const AddEmployee = () => {
   const { data: freeEmployee = [], isLoading: isFreeEmployeeLoading, refetch } = useQuery({
     queryKey: ['assets'],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/free-employee`);
+      const res = await axios.get(`https://track-ease-server.vercel.app/free-employee`);
       return res.data;
     },
   });

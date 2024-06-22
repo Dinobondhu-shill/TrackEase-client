@@ -17,7 +17,7 @@ const {data:reqAssets={}, isPending, refetch} = useQuery({
 queryKey:['assets', search],
 
 queryFn: async()=>{
-const res = await axios.get(`http://localhost:5000/requested-assets/${company}?search=${search}`)
+const res = await axios.get(`https://track-ease-server.vercel.app/requested-assets/${company}?search=${search}`)
 return res.data
 }
 });
@@ -32,7 +32,7 @@ const handleApprove = async(id, assetId) =>{
   const status = 'approved'
   const approvedDate = moment().format('YYYY-MM-DD');
  const updateDoc = {status, approvedDate, assetId}
-  const res = await axios.patch(`http://localhost:5000/approve-asset/${id}`, updateDoc)
+  const res = await axios.patch(`https://track-ease-server.vercel.app/approve-asset/${id}`, updateDoc)
   console.log(res.data)
   if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
     toast.success('Request has been approved')
@@ -42,7 +42,7 @@ const handleApprove = async(id, assetId) =>{
 
 const handleDelete = async(id) =>{
   const status = 'rejected'
-  const res = await axios.patch(`http://localhost:5000/reject-asset/${id}`, {status})
+  const res = await axios.patch(`https://track-ease-server.vercel.app/reject-asset/${id}`, {status})
   console.log(res.data)
   if(res?.data.modifiedCount > 0){
     toast.warning('Request has been rejected')

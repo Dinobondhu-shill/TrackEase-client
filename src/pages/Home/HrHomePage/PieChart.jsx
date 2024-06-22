@@ -7,7 +7,7 @@ import useRoll from '../../../hooks/useRoll';
 const fetchStatistics = async (company) => {
 
 
-  const { data } = await axios.get(`http://localhost:5000/items-statistics/${company}`);
+  const { data } = await axios.get(`https://track-ease-server.vercel.app/items-statistics/${company}`);
   return data;
 };
 

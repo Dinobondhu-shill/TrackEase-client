@@ -15,7 +15,7 @@ const [role] = useRoll();
     style={({ isActive,}) => {
       return {
         fontWeight: isActive ? "bold" : "",
-        color: isActive ? "black" : "#7be8f4da",
+        color: isActive ? "black" : "#38BDF8",
         
         
       };
@@ -25,7 +25,7 @@ const [role] = useRoll();
     style={({ isActive,}) => {
       return {
         fontWeight: isActive ? "bold" : "",
-        color: isActive ? "black" : "#7be8f4da",
+        color: isActive ? "black" : "#38BDF8",
         
       };
     }}>Join as Employee</NavLink>
@@ -33,7 +33,7 @@ const [role] = useRoll();
     style={({ isActive,}) => {
       return {
         fontWeight: isActive ? "bold" : "",
-        color: isActive ? "black" : "#7be8f4da",
+        color: isActive ? "black" : "#38BDF8",
         
       };
     }}>Join as HR Manager</NavLink>
@@ -41,7 +41,7 @@ const [role] = useRoll();
     style={({ isActive,}) => {
       return {
         fontWeight: isActive ? "bold" : "",
-        color: isActive ? "black" : "#7be8f4da",
+        color: isActive ? "black" : "#38BDF8",
         
       };
     }}>Login</NavLink>
@@ -52,7 +52,7 @@ const [role] = useRoll();
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
-         color: isActive ? "black" : "#7be8f4da",
+         color: isActive ? "black" : "#38BDF8",
          
          
        };
@@ -62,7 +62,7 @@ const [role] = useRoll();
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
-         color: isActive ? "black" : "#7be8f4da",
+         color: isActive ? "black" : "#38BDF8",
          
        };
      }}>Asset List</NavLink>
@@ -70,7 +70,7 @@ const [role] = useRoll();
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
-         color: isActive ? "black" : "#7be8f4da",
+         color: isActive ? "black" : "#38BDF8",
          
        };
      }}>Add an Asset</NavLink>
@@ -78,7 +78,7 @@ const [role] = useRoll();
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
-         color: isActive ? "black" : "#7be8f4da",
+         color: isActive ? "black" : "#38BDF8",
          
        };
      }}>All Requst</NavLink>
@@ -86,7 +86,7 @@ const [role] = useRoll();
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
-         color: isActive ? "black" : "#7be8f4da",
+         color: isActive ? "black" : "#38BDF8",
          
        };
      }}>My Employee List</NavLink>
@@ -94,7 +94,7 @@ const [role] = useRoll();
      style={({ isActive,}) => {
        return {
          fontWeight: isActive ? "bold" : "",
-         color: isActive ? "black" : "#7be8f4da",
+         color: isActive ? "black" : "#38BDF8",
          
        };
      }}>Add an Employee</NavLink>
@@ -106,7 +106,7 @@ const [role] = useRoll();
       style={({ isActive,}) => {
         return {
           fontWeight: isActive ? "bold" : "",
-          color: isActive ? "black" : "#7be8f4da",
+          color: isActive ? "black" : "#38BDF8",
           
           
         };
@@ -116,7 +116,7 @@ const [role] = useRoll();
       style={({ isActive,}) => {
         return {
           fontWeight: isActive ? "bold" : "",
-          color: isActive ? "black" : "#7be8f4da",
+          color: isActive ? "black" : "#38BDF8",
           
         };
       }}>My Assets</NavLink>
@@ -124,7 +124,7 @@ const [role] = useRoll();
       style={({ isActive,}) => {
         return {
           fontWeight: isActive ? "bold" : "",
-          color: isActive ? "black" : "#7be8f4da",
+          color: isActive ? "black" : "#38BDF8",
           
         };
       }}>My Team</NavLink>
@@ -132,7 +132,7 @@ const [role] = useRoll();
       style={({ isActive,}) => {
         return {
           fontWeight: isActive ? "bold" : "",
-          color: isActive ? "black" : "#7be8f4da",
+          color: isActive ? "black" : "#38BDF8",
           
         };
       }}>Request for an Asset</NavLink>

@@ -13,7 +13,6 @@ const AssetList = () => {
   const [sort, setSort] = useState('')
   const [search, setSearch] = useState('')
   const [role] = useRoll()
-  console.log(role)
   const company = role[2]
 
 
@@ -21,7 +20,7 @@ const AssetList = () => {
     queryKey:['assets', filter, filter2, search, sort],
     
     queryFn: async()=>{
-      const res = await axios.get(`http://localhost:5000/assets/${company}`, {
+      const res = await axios.get(`https://track-ease-server.vercel.app/assets/${company}`, {
         params: { filter, filter2, search, sort },
       });
       return res.data
@@ -45,7 +44,7 @@ const AssetList = () => {
         })
         .then(async(result) => {
           if (result.isConfirmed){
-            const res = await axios.delete(`http://localhost:5000/delete-asset/${id}`)
+            const res = await axios.delete(`https://track-ease-server.vercel.app/delete-asset/${id}`)
             refetch()
             if(res.data.deletedCount > 0){
               Swal.fire({

@@ -11,7 +11,7 @@ const {data:assets=[]} = useQuery({
   queryKey: ['limited-asset', company],
 
 queryFn: async()=>{
-const res = await axios.get(`http://localhost:5000/limited-stock/${company}`)
+const res = await axios.get(`https://track-ease-server.vercel.app/limited-stock/${company}`)
 return res.data
 },
 enabled: !!company, 

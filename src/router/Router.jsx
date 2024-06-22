@@ -18,11 +18,13 @@ import HrPrivateRoute from "./HrPrivateRoute";
 import EmployeePrivate from "./EmployeePrivateRoute";
 import Packages from "../pages/Package/Packages";
 import SignUp from "../pages/SignIn/SignUp";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         path:"/",
@@ -51,7 +53,7 @@ export const router = createBrowserRouter([
       {
         path:"/hr/assets/:id",
         element:<HrPrivateRoute><UpdateAsset></UpdateAsset></HrPrivateRoute>,
-        loader:({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
+        loader:({params})=> fetch(`https://track-ease-server.vercel.app/assets/${params.id}`)
       },
       {
         path:"/add-employee",
@@ -81,7 +83,7 @@ export const router = createBrowserRouter([
       {
         path:'/print-asset-details/:id',
         element:<PdfDownload></PdfDownload>,
-        loader:({params})=> fetch(`http://localhost:5000/download-pdf/${params.id}`)
+        loader:({params})=> fetch(`https://track-ease-server.vercel.app/download-pdf/${params.id}`)
       },
       {
         path:'/packages',

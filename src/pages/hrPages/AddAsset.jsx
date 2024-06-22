@@ -26,7 +26,7 @@ const AddAsset = () => {
 
     const asset = {product, productType, quantity, addedDate, company}
     // add asset data to the database
-   axios.post('http://localhost:5000/add-asset', asset)
+   axios.post('https://track-ease-server.vercel.app/add-asset', asset)
     .then(res=>{
       if(res.data.insertedId){
         Swal.fire({

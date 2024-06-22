@@ -62,7 +62,7 @@ const CheckOutForm = ({ clientSecret, plan }) => {
       }
 
       if (paymentIntent.status === 'succeeded') {
-        const response = await axios.patch(`http://localhost:5000/change-packages/${email}`, { plan });
+        const response = await axios.patch(`https://track-ease-server.vercel.app/change-packages/${email}`, { plan });
         console.log('Response data:', response.data);
         if (response.data.modifiedCount === 1) {
           Swal.fire({

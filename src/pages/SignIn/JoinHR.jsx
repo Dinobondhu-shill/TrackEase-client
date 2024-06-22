@@ -72,7 +72,7 @@ const JoinHR = () => {
       
     
       // Create payment intent on server
-      const paymentIntentResponse = await axios.post("http://localhost:5000/payment-intent", {
+      const paymentIntentResponse = await axios.post("https://track-ease-server.vercel.app/payment-intent", {
         price : getPackageAmount(packages)
       });
       const clientSecret = paymentIntentResponse.data.clientSecret;
@@ -94,7 +94,7 @@ const JoinHR = () => {
       if (paymentIntent.status === "succeeded") {
         console.log(paymentIntent);
         await createUser(email, password);
-        await axios.post("http://localhost:5000/users", hr);
+        await axios.post("https://track-ease-server.vercel.app/users", hr);
         await updateUserProfile(name, imageUrl1);
         navigate(location?.state || "/");
         Swal.fire("You are now logged in");

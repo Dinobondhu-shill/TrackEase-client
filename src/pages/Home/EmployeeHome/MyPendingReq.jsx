@@ -12,13 +12,13 @@ const email = user?.email
     queryKey:['pending asset'],
     
     queryFn: async()=>{
-    const res = await axios.get(`http://localhost:5000/pending-request/${email}`)
+    const res = await axios.get(`https://track-ease-server.vercel.app/pending-request/${email}`)
     return res.data
     }
     });
 
     const handleCancelAsset = async(id) =>{
-      const res = await axios.delete(`http://localhost:5000/delete-req/${id}`)
+      const res = await axios.delete(`https://track-ease-server.vercel.app/delete-req/${id}`)
       
       refetch()
     }
