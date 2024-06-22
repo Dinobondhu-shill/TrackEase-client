@@ -5,9 +5,9 @@ import axios from "axios";
 
 const LimitedStock = () => {
 const [role] = useRoll()
-const company = role ? role[2] : '';
+const company =role[2]
 
-const {data:assets=[], error, isLoading} = useQuery({
+const {data:assets=[]} = useQuery({
   queryKey: ['limited-asset', company],
 
 queryFn: async()=>{
@@ -16,13 +16,7 @@ return res.data
 },
 enabled: !!company, 
 });
-if (isLoading) {
-  return <div>Loading...</div>;
-}
 
-if (error) {
-  return <div>Error fetching data: {error.message}</div>;
-}
 
 return (
 <div className="mt-10">

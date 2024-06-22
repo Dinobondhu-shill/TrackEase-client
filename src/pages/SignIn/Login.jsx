@@ -10,6 +10,7 @@ import { SiFacebook } from "react-icons/si";
 import { ToastContainer } from "react-toastify";
 import { AuthContext } from "../../firebase/FirebaseProvider";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 
@@ -17,7 +18,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 const [login, setLogin] = useState('')
 const [loginErr, setLoginErr] = useState('')
-const {signIn} = useContext(AuthContext)
+const {signIn, googleLogin,githubLogin, facebookLogin } = useContext(AuthContext)
 const navigate = useNavigate();
 const location = useLocation();
   const {
@@ -31,21 +32,33 @@ const location = useLocation();
     console.log(data.Email, data.Password)
     signIn(data.Email, data.Password)
     .then(res=>{
+      Swal("You are now logged in")
       setLogin('login successful')
       navigate(location?.state || '/')
-      Swal("You are now logged in")
+      
     })
     .catch(error=>{
       console.log(error)
       setLoginErr('Email or Password is not correct')
     })
   }
-  // const handleSocailLogin = socialProvider =>{
-  //   socialProvider ()
-  //   .then((result)=>{
-  //     navigate(location?.state || '/')
-  //   })
-  // }
+  const handleSocailLogin = socialProvider =>{
+    socialProvider ()
+    .then( async(result)=>{
+      const email = result.user?.email
+      const name = result.user?.displayName
+      const image = result.user?.imageURL
+      const role = 'employee'
+      const company = null
+      const employee ={email, name, image, role, company}
+       // send users data after login
+       const response = await axios.post('http://localhost:5000/users', employee)
+
+      navigate(location?.state || '/')
+      Swal.fire("You are now logged in");
+
+    })
+  }
 
   return (
     <div className="px-5 pt-20 md:px-10  text-center">
@@ -92,13 +105,13 @@ className=" flex flex-col w-full md:w-1/2 gap-3">
 <h2 data-aos="fade-right" className="font-bold mt-4">Or Continue With:</h2>
 <div className="flex justify-between mt-4 ju">
 <button 
-// onClick={()=>  handleSocailLogin(googleLogin)}
+onClick={()=>  handleSocailLogin(googleLogin)}
  className="text-4xl"> <FcGoogle /> </button>
 <button 
-// onClick={()=> handleSocailLogin(githubLogin)}
+onClick={()=> handleSocailLogin(githubLogin)}
  className="text-4xl"> <FaGithub /> </button>
 <button 
-// onClick={()=> handleSocailLogin(facebookLogin)}
+onClick={()=> handleSocailLogin(facebookLogin)}
  className="text-4xl text-blue-500"> <SiFacebook /> </button>
 </div>
 </div>

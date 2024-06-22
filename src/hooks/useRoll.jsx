@@ -6,7 +6,7 @@ import axios from "axios";
 const useRoll = () => {
   const { user } = useContext(AuthContext)
 
- const {data:role={}, isPending:isHrLoading} = useQuery({
+ const {data:role=[], isLoading:isHrLoading} = useQuery({
   queryKey:[user?.email, 'role'],
   enabled:!!user, 
   queryFn: async()=>{

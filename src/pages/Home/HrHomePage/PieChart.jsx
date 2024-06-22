@@ -14,18 +14,13 @@ const fetchStatistics = async (company) => {
 const PieChartComponent = () => {
   const [role] = useRoll()
   const company = role[2]
-  const { data: count = {}, error, isLoading } = useQuery({
+  const { data: count = {} } = useQuery({
     queryKey: ['pie-data'],
     queryFn:()=>fetchStatistics(company),
   });
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error fetching data: {error.message}</div>;
-  }
+  
+ 
 
   const chartData = [
     { name: 'Returnable', value: count.returnable },

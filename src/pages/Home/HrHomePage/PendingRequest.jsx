@@ -55,7 +55,7 @@ refetch()
 
 if(isPending) return <span className="loading block mx-auto text-6xl text-center loading-spinner text-info "></span>
 return (
-<div>
+<div className="md:mt-10">
   <h2 className="md:text-3xl text-x font-semibold">Your Pending Request :</h2>
 
   <div className="my-4">

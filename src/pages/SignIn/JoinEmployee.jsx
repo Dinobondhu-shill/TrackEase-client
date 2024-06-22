@@ -6,13 +6,16 @@ import lottiejson from "../../../public/joinEmployee.json"
 import axios from "axios";
 import { AuthContext } from "../../firebase/FirebaseProvider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { SiFacebook } from "react-icons/si";
 
 
 const JoinEmployee = () => {
   const [startDate, setStartDate] = useState(null);
   const [error, setError] = useState('')
-  const {createUser, updateUserProfile, loading} = useContext(AuthContext)
+  const {createUser, updateUserProfile, loading, googleLogin} = useContext(AuthContext)
   const navigate = useNavigate();
 
 
@@ -46,7 +49,7 @@ console.log(employee)
       //  update users profile
       await updateUserProfile(name, imageUrl)
       navigate(location?.state || '/')
-      Swal("You are now logged in")
+      Swal.fire("You are now logged in");
      
 
     })
@@ -57,7 +60,23 @@ console.log(employee)
    
 
   }
+  const handleSocailLogin = socialProvider =>{
+    socialProvider ()
+    .then( async(result)=>{
+      const email = result.user?.email
+      const name = result.user?.displayName
+      const image = result.user?.imageURL
+      const role = 'employee'
+      const company = null
+      const employee ={email, name, image, role, company}
+       // send users data after login
+       const response = await axios.post('http://localhost:5000/users', employee)
 
+      navigate(location?.state || '/')
+      Swal.fire("You are now logged in");
+
+    })
+  }
 return (
 <div className="pt-16 flex gap-5 lg:px-20">
 <div className="w-2/3">
@@ -108,6 +127,21 @@ return (
       {error && <p className="text-red-500">{error}</p>}
       <input type="submit" value="Sign Up" className="border cursor-pointer border-[#92e0e3] mx-auto px-4 py-2 rounded-lg "/>
     </form>
+    <div className="md:w-2/4">
+<p data-aos="fade-left" className="mt-4 text-[16px] pb-4">Sign up as <Link to={'/join-as-hr'} className="underline  text-blue-400">HR</Link> </p> <hr />
+<h2 data-aos="fade-right" className="font-bold mt-4">Or Continue With:</h2>
+<div className="flex justify-between mt-4 ju">
+<button 
+onClick={()=>  handleSocailLogin(googleLogin)}
+ className="text-4xl"> <FcGoogle /> </button>
+<button 
+// onClick={()=> handleSocailLogin(githubLogin)}
+ className="text-4xl"> <FaGithub /> </button>
+<button 
+// onClick={()=> handleSocailLogin(facebookLogin)}
+ className="text-4xl text-blue-500"> <SiFacebook /> </button>
+</div>
+</div>
   </div>
   
 </div>

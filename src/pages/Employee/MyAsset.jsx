@@ -3,6 +3,7 @@ import { AuthContext } from "../../firebase/FirebaseProvider";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 
 
@@ -35,7 +36,7 @@ return res.data
 
 const handleCancelAsset = async(id) =>{
   const res = await axios.delete(`http://localhost:5000/delete-req/${id}`)
-  alert('Asset has been canceled')
+  toast('Asset has been canceled')
   refetch()
 }
 
@@ -45,7 +46,7 @@ const handleReturn = async(id, assetId) =>{
   const updateDoc = {status, assetId, approvedDate}
 const res = await axios.patch(`http://localhost:5000/return-asset/${id}`, updateDoc)
 if(res.data.result.modifiedCount>0 && res.data.updateMainAsset.modifiedCount>0){
-  alert('Request has been approved')
+  toast('Request has been approved')
 }
 }
 
@@ -75,6 +76,7 @@ return (
         <option value="non-returnable">Non-returnable</option>
       </select>
     </div>
+    <ToastContainer></ToastContainer>
     <div className="dropdown dropdown-hover">
       <select onChange={e=> setFilter(e.target.value)}
         name='sort'

@@ -1,6 +1,7 @@
 import axios from "axios";
 import useRoll from "../hooks/useRoll";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
 
 const EmployeeCard = ({person,totalEmployee, teamMates, refetch}) => {
   const [role] = useRoll()
@@ -12,7 +13,7 @@ const EmployeeCard = ({person,totalEmployee, teamMates, refetch}) => {
    
   const handleAddToTeam =async(id)=>{
     if(teamMates.length >= totalEmployee){
-      return alert("You can't add employees, please increase the package")
+      return toast("You can't add employees, please increase the package")
     }
     const res = await axios.put(`http://localhost:5000/add-employee/${id}`, addingEmployee);
     if(res.data.modifiedCount>0){
@@ -33,6 +34,7 @@ return (
       <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
     </div>
   </div>
+  <ToastContainer></ToastContainer>
   <h2 className="text-2xl font-bold">{person?.name}</h2>
   <button onClick={()=>handleAddToTeam(person._id)} className="border w-fit mx-auto py-2 px-3 rounded-md my-3 bg-[#69a3a840] font-semibold hover:bg-[#69a3a8a7] hover:text-white">Add to Team</button>
 </div>

@@ -12,19 +12,13 @@ const MostRequested = () => {
   const [role] = useRoll();
   const company = role ? role[2] : '';
 
-  const { data: topItems = [], error, isLoading } = useQuery({
+  const { data: topItems = []} = useQuery({
     queryKey: ['top-items', company],
     queryFn: () => fetchTopItems(company),
-    enabled: !!company, // Ensure query runs only when company is available
+    enabled: !!company, 
   });
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
-  if (error) {
-    return <div>Error fetching data: {error.message}</div>;
-  }
 
   return (
     <div className="mt-8">
